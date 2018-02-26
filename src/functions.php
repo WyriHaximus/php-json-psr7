@@ -7,7 +7,7 @@ use RingCentral\Psr7\Response;
 
 function psr7_response_json_encode(ResponseInterface $response): string
 {
-    return json_encode(psr7_response_encode($response));
+    return json_try_encode(psr7_response_encode($response));
 }
 
 function psr7_response_encode(ResponseInterface $response): array
@@ -27,7 +27,7 @@ function psr7_response_encode(ResponseInterface $response): array
  */
 function psr7_response_json_decode(string $json): ResponseInterface
 {
-    return psr7_response_decode(json_decode($json, true));
+    return psr7_response_decode(json_try_decode($json, true));
 }
 
 /**

@@ -4,8 +4,43 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b06243acf065372d21caf75f761e1cc",
+    "content-hash": "98f2565d5944546fea23992fdd2ad7dd",
     "packages": [
+        {
+            "name": "daverandom/exceptional-json",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DaveRandom/ExceptionalJSON.git",
+                "reference": "7dfa85369633669d9694cbc79db005268718f15a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DaveRandom/ExceptionalJSON/zipball/7dfa85369633669d9694cbc79db005268718f15a",
+                "reference": "7dfa85369633669d9694cbc79db005268718f15a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ExceptionalJSON\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Wright"
+                }
+            ],
+            "description": "JSON encoding and decoding that throws exceptions on failure",
+            "time": "2017-05-31T16:37:55+00:00"
+        },
         {
             "name": "psr/http-message",
             "version": "1.0.1",
