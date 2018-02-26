@@ -17,7 +17,7 @@ function psr7_response_encode(ResponseInterface $response): array
     $json['status_code'] = $response->getStatusCode();
     $json['reason_phrase'] = $response->getReasonPhrase();
     $json['headers'] = $response->getHeaders();
-    $json['body'] = $response->getBody()->getContents();
+    $json['body'] = base64_encode($response->getBody()->getContents());
 
     return $json;
 }
@@ -52,7 +52,7 @@ function psr7_response_decode(array $json): ResponseInterface
     return new Response(
         $json['status_code'],
         $json['headers'],
-        $json['body'],
+        base64_decode($json['body']),
         $json['protocol_version'],
         $json['reason_phrase']
     );
