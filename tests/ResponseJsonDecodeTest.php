@@ -18,7 +18,7 @@ final class ResponseJsonDecodeTest extends TestCase
                     'bar',
                 ],
             ],
-            'body' => 'beer',
+            'body' => 'YmVlcg==',
         ]);
 
         $response = WyriHaximus\psr7_response_json_decode($json);

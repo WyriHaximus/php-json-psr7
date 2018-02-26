@@ -31,7 +31,7 @@ final class ResponseEncodeTest extends TestCase
                         'bar',
                     ],
                 ],
-                'body' => 'beer',
+                'body' => 'YmVlcg==',
             ],
             $json
         );

@@ -52,7 +52,7 @@ function psr7_response_decode(array $json): ResponseInterface
     return new Response(
         $json['status_code'],
         $json['headers'],
-        base64_decode($json['body']),
+        base64_decode($json['body'], true),
         $json['protocol_version'],
         $json['reason_phrase']
     );
