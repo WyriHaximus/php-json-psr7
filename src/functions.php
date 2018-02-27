@@ -2,6 +2,7 @@
 
 namespace WyriHaximus;
 
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RingCentral\Psr7\Response;
 
@@ -18,6 +19,24 @@ function psr7_response_encode(ResponseInterface $response): array
     $json['reason_phrase'] = $response->getReasonPhrase();
     $json['headers'] = $response->getHeaders();
     $json['body'] = base64_encode($response->getBody()->getContents());
+
+    return $json;
+}
+
+function psr7_request_json_encode(RequestInterface $request): string
+{
+    return json_try_encode(psr7_request_encode($request));
+}
+
+function psr7_request_encode(RequestInterface $request): array
+{
+    $json = [];
+    $json['protocol_version'] = $request->getProtocolVersion();
+    $json['method'] = $request->getMethod();
+    $json['request_target'] = $request->getRequestTarget();
+    $json['uri'] = (string)$request->getUri();
+    $json['headers'] = $request->getHeaders();
+    $json['body'] = base64_encode($request->getBody()->getContents());
 
     return $json;
 }
