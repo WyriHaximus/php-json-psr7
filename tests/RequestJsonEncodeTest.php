@@ -25,7 +25,6 @@ final class RequestJsonEncodeTest extends TestCase
             json_encode([
                 'protocol_version' => '2.0',
                 'method' => 'GET',
-                'request_target' => '/',
                 'uri' => 'https://www.example.com/',
                 'headers' => [
                     'Host' => [
