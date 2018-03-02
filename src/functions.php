@@ -2,8 +2,11 @@
 
 namespace WyriHaximus;
 
+use Cake\Utility\Hash;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UploadedFileInterface;
 use RingCentral\Psr7\Request;
 use RingCentral\Psr7\Response;
 
@@ -111,4 +114,21 @@ function psr7_request_decode(array $json): RequestInterface
         base64_decode($json['body'], true),
         $json['protocol_version']
     );
+}
+
+function psr7_uploaded_file_json_encode(UploadedFileInterface $uploadedFile): string
+{
+    return json_try_encode(psr7_uploaded_file_encode($uploadedFile));
+}
+
+function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
+{
+    $json = [];
+    $json['filename'] = $uploadedFile->getClientFilename();
+    $json['media_type'] = $uploadedFile->getClientMediaType();
+    $json['error'] = $uploadedFile->getError();
+    $json['size'] = $uploadedFile->getSize();
+    $json['stream'] = $uploadedFile->getStream()->getContents();
+
+    return $json;
 }
