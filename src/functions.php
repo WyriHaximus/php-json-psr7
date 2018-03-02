@@ -132,3 +132,30 @@ function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
 
     return $json;
 }
+
+function psr7_server_request_json_encode(ServerRequestInterface $request): string
+{
+    return json_try_encode(psr7_server_request_encode($request));
+}
+
+function psr7_server_request_encode(ServerRequestInterface $request): array
+{
+    $json = [];
+    $json['protocol_version'] = $request->getProtocolVersion();
+    $json['method'] = $request->getMethod();
+    $json['uri'] = (string)$request->getUri();
+    $json['query_params'] = $request->getQueryParams();
+    $json['cookie_params'] = $request->getCookieParams();
+    $json['server_params'] = $request->getServerParams();
+    $json['headers'] = $request->getHeaders();
+    $json['attributes'] = $request->getAttributes();
+    $json['body'] = base64_encode($request->getBody()->getContents());
+    $json['parsed_body'] = $request->getParsedBody();
+    $json['files'] = $request->getUploadedFiles();
+    $json['files'] = Hash::flatten($json['files']);
+    foreach ($json['files'] as $key => $file) {
+        $json['files'][$key] = psr7_uploaded_file_encode($file);
+    }
+
+    return $json;
+}
