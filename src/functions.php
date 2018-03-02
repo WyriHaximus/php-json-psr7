@@ -7,8 +7,10 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
+use React\Http\Io\UploadedFile;
 use RingCentral\Psr7\Request;
 use RingCentral\Psr7\Response;
+use function RingCentral\Psr7\stream_for;
 
 function psr7_response_json_encode(ResponseInterface $response): string
 {
@@ -128,9 +130,45 @@ function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
     $json['media_type'] = $uploadedFile->getClientMediaType();
     $json['error'] = $uploadedFile->getError();
     $json['size'] = $uploadedFile->getSize();
-    $json['stream'] = $uploadedFile->getStream()->getContents();
+    $json['stream'] = base64_encode($uploadedFile->getStream()->getContents());
 
     return $json;
+}
+
+/**
+ * @throws NotAnEncodedUploadedFileException
+ */
+function psr7_uploaded_file_json_decode(string $json): UploadedFileInterface
+{
+    return psr7_uploaded_file_decode(json_try_decode($json, true));
+}
+
+/**
+ * @throws NotAnEncodedUploadedFileException
+ */
+function psr7_uploaded_file_decode(array $json): UploadedFileInterface
+{
+    $properties = [
+        'stream',
+        'size',
+        'error',
+        'filename',
+        'media_type',
+    ];
+
+    foreach ($properties as $property) {
+        if (!isset($json[$property])) {
+            throw new NotAnEncodedUploadedFileException($json);
+        }
+    }
+
+    return new UploadedFile(
+        stream_for(base64_decode($json['stream'], true)),
+        $json['size'],
+        $json['error'],
+        $json['filename'],
+        $json['media_type']
+    );
 }
 
 function psr7_server_request_json_encode(ServerRequestInterface $request): string

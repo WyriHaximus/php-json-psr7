@@ -20,7 +20,7 @@ final class UploadedFileJsonEncodeTest extends TestCase
                 'media_type' => 'earth/liquid',
                 'error' => 0,
                 'size' => 14,
-                'stream' => 'Dark Horizon 5',
+                'stream' => 'RGFyayBIb3Jpem9uIDU=',
             ]),
             $json
         );
