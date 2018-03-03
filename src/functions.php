@@ -225,6 +225,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         'attributes',
         'body',
         'parsed_body',
+        'files',
     ];
 
     foreach ($properties as $property) {
