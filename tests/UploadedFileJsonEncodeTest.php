@@ -9,7 +9,7 @@ use function RingCentral\Psr7\stream_for;
 
 final class UploadedFileJsonEncodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
 

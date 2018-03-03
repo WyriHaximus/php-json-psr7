@@ -8,7 +8,7 @@ use WyriHaximus;
 
 final class ServerRequestJsonDecodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $time = time();
         $json = json_encode([
@@ -99,5 +99,14 @@ final class ServerRequestJsonDecodeTest extends TestCase
         self::assertSame('earth/liquid', $files['root']['beer']->getClientMediaType());
         self::assertSame('Dark Horizon 5', $files['root']['beer']->getStream()->getContents());
         self::assertSame(UPLOAD_ERR_OK, $files['root']['beer']->getError());
+    }
+
+    /**
+     * @expectedException WyriHaximus\NotAnEncodedServerRequestException
+     * @expectedExceptionMessage "[]" is not an encoded PSR-7 server request, field "protocol_version" is missing
+     */
+    public function testFailure()
+    {
+        WyriHaximus\psr7_server_request_json_decode('[]');
     }
 }

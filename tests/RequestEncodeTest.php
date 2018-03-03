@@ -8,7 +8,7 @@ use WyriHaximus;
 
 final class RequestEncodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $request = new Request(
             'GET',

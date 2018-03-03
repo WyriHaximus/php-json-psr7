@@ -7,7 +7,7 @@ use WyriHaximus;
 
 final class ResponseDecodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $json = [
             'protocol_version' => '2.0',
@@ -31,5 +31,14 @@ final class ResponseDecodeTest extends TestCase
             ],
         ], $response->getHeaders());
         self::assertSame('beer', $response->getBody()->getContents());
+    }
+
+    /**
+     * @expectedException WyriHaximus\NotAnEncodedResponseException
+     * @expectedExceptionMessage "[]" is not an encoded PSR-7 response, field "protocol_version" is missing
+     */
+    public function testFailure()
+    {
+        WyriHaximus\psr7_response_decode([]);
     }
 }

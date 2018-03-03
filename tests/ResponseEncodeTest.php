@@ -8,7 +8,7 @@ use WyriHaximus;
 
 final class ResponseEncodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $response = new Response(
             200,

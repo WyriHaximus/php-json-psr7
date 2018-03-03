@@ -7,7 +7,7 @@ use WyriHaximus;
 
 final class RequestJsonDecodeTest extends TestCase
 {
-    public function test()
+    public function testSuccess()
     {
         $json = json_encode([
             'protocol_version' => '2.0',
@@ -37,5 +37,14 @@ final class RequestJsonDecodeTest extends TestCase
             ],
         ], $request->getHeaders());
         self::assertSame('beer', $request->getBody()->getContents());
+    }
+
+    /**
+     * @expectedException WyriHaximus\NotAnEncodedRequestException
+     * @expectedExceptionMessage "[]" is not an encoded PSR-7 request, field "protocol_version" is missing
+     */
+    public function testFailure()
+    {
+        WyriHaximus\psr7_request_json_decode('[]');
     }
 }
