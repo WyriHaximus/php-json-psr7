@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "33a946dbaf651ac7d99bb50e76d84390",
+    "content-hash": "1c3b2262e4cacac981ea0c96e5799650",
     "packages": [
         {
             "name": "cakephp/utility",
@@ -669,16 +669,16 @@
         },
         {
             "name": "wyrihaximus/json-utilities",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-json-utilities.git",
-                "reference": "f3cb10be71ab54ffdd29f3102f9dfa8782f3ef85"
+                "reference": "c8ed221dfba974c4ae190dc687382a5eb0b60cc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-json-utilities/zipball/f3cb10be71ab54ffdd29f3102f9dfa8782f3ef85",
-                "reference": "f3cb10be71ab54ffdd29f3102f9dfa8782f3ef85",
+                "url": "https://api.github.com/repos/WyriHaximus/php-json-utilities/zipball/c8ed221dfba974c4ae190dc687382a5eb0b60cc5",
+                "reference": "c8ed221dfba974c4ae190dc687382a5eb0b60cc5",
                 "shasum": ""
             },
             "require": {
@@ -710,7 +710,7 @@
                 }
             ],
             "description": "Utilities for php-json-* packages",
-            "time": "2018-03-03T21:30:45+00:00"
+            "time": "2018-03-03T23:07:12+00:00"
         }
     ],
     "packages-dev": [
@@ -2979,9 +2979,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wyrihaximus/json-utilities": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
