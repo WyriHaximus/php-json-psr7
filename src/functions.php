@@ -51,10 +51,8 @@ function psr7_response_decode(array $json): ResponseInterface
         'body',
     ];
 
-    foreach ($properties as $property) {
-        if (!isset($json[$property])) {
-            throw new NotAnEncodedResponseException($json);
-        }
+    if (!validate_array($json, $properties)) {
+        throw new NotAnEncodedResponseException($json);
     }
 
     return new Response(
@@ -104,10 +102,8 @@ function psr7_request_decode(array $json): RequestInterface
         'body',
     ];
 
-    foreach ($properties as $property) {
-        if (!isset($json[$property])) {
-            throw new NotAnEncodedRequestException($json);
-        }
+    if (!validate_array($json, $properties)) {
+        throw new NotAnEncodedRequestException($json);
     }
 
     return new Request(
@@ -157,10 +153,8 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
         'media_type',
     ];
 
-    foreach ($properties as $property) {
-        if (!isset($json[$property])) {
-            throw new NotAnEncodedUploadedFileException($json);
-        }
+    if (!validate_array($json, $properties)) {
+        throw new NotAnEncodedUploadedFileException($json);
     }
 
     return new UploadedFile(
@@ -228,10 +222,8 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         'files',
     ];
 
-    foreach ($properties as $property) {
-        if (!isset($json[$property])) {
-            throw new NotAnEncodedServerRequestException($json);
-        }
+    if (!validate_array($json, $properties)) {
+        throw new NotAnEncodedServerRequestException($json);
     }
 
     $request = (new ServerRequest(
@@ -261,4 +253,15 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
     }
 
     return $request;
+}
+
+function validate_array(array $data, array $fields): bool
+{
+    foreach ($fields as $field) {
+        if (!isset($data[$field]) && !is_null($data[$field])) {
+            return false;
+        }
+    }
+
+    return true;
 }
