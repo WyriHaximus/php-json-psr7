@@ -6,8 +6,8 @@ use Exception;
 
 final class NotAnEncodedServerRequestException extends Exception
 {
-    public function __construct($json)
+    public function __construct($json, $field)
     {
-        parent::__construct('"' . json_encode($json) . '"" is not an encoded PSR-7 server request');
+        parent::__construct('"' . json_encode($json) . '"" is not an encoded PSR-7 server request, field "' . $field . '" is missing');
     }
 }

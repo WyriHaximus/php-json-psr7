@@ -51,9 +51,7 @@ function psr7_response_decode(array $json): ResponseInterface
         'body',
     ];
 
-    if (!validate_array($json, $properties)) {
-        throw new NotAnEncodedResponseException($json);
-    }
+    validate_array($json, $properties, NotAnEncodedResponseException::class);
 
     return new Response(
         $json['status_code'],
@@ -102,9 +100,7 @@ function psr7_request_decode(array $json): RequestInterface
         'body',
     ];
 
-    if (!validate_array($json, $properties)) {
-        throw new NotAnEncodedRequestException($json);
-    }
+    validate_array($json, $properties, NotAnEncodedRequestException::class);
 
     return new Request(
         $json['method'],
@@ -153,9 +149,7 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
         'media_type',
     ];
 
-    if (!validate_array($json, $properties)) {
-        throw new NotAnEncodedUploadedFileException($json);
-    }
+    validate_array($json, $properties, NotAnEncodedUploadedFileException::class);
 
     return new UploadedFile(
         stream_for(base64_decode($json['stream'], true)),
@@ -222,9 +216,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         'files',
     ];
 
-    if (!validate_array($json, $properties)) {
-        throw new NotAnEncodedServerRequestException($json);
-    }
+    validate_array($json, $properties, NotAnEncodedServerRequestException::class);
 
     $request = (new ServerRequest(
         $json['method'],
@@ -253,15 +245,4 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
     }
 
     return $request;
-}
-
-function validate_array(array $data, array $fields): bool
-{
-    foreach ($fields as $field) {
-        if (!isset($data[$field]) && !is_null($data[$field])) {
-            return false;
-        }
-    }
-
-    return true;
 }

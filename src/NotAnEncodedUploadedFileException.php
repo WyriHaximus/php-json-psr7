@@ -6,8 +6,8 @@ use Exception;
 
 final class NotAnEncodedUploadedFileException extends Exception
 {
-    public function __construct($json)
+    public function __construct($json, $field)
     {
-        parent::__construct('"' . json_encode($json) . '"" is not an encoded PSR-7 uploaded file');
+        parent::__construct('"' . json_encode($json) . '"" is not an encoded PSR-7 uploaded file, field "' . $field . '" is missing');
     }
 }
