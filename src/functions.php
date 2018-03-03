@@ -10,6 +10,7 @@ use Psr\Http\Message\UploadedFileInterface;
 use React\Http\Io\UploadedFile;
 use RingCentral\Psr7\Request;
 use RingCentral\Psr7\Response;
+use RingCentral\Psr7\ServerRequest;
 use function RingCentral\Psr7\stream_for;
 
 function psr7_response_json_encode(ResponseInterface $response): string
@@ -196,4 +197,67 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
     }
 
     return $json;
+}
+
+/**
+ * @throws NotAnEncodedServerRequestException
+ * @throws NotAnEncodedUploadedFileException
+ */
+function psr7_server_request_json_decode(string $json): ServerRequestInterface
+{
+    return psr7_server_request_decode(json_try_decode($json, true));
+}
+
+/**
+ * @throws NotAnEncodedServerRequestException
+ * @throws NotAnEncodedUploadedFileException
+ */
+function psr7_server_request_decode(array $json): ServerRequestInterface
+{
+    $properties = [
+        'protocol_version',
+        'method',
+        'uri',
+        'query_params',
+        'cookie_params',
+        'server_params',
+        'headers',
+        'attributes',
+        'body',
+        'parsed_body',
+    ];
+
+    foreach ($properties as $property) {
+        if (!isset($json[$property])) {
+            throw new NotAnEncodedServerRequestException($json);
+        }
+    }
+
+    $request = (new ServerRequest(
+        $json['method'],
+        $json['uri'],
+        $json['headers'],
+        base64_decode($json['body'], true),
+        $json['protocol_version'],
+        $json['server_params']
+    ))->
+        withParsedBody($json['parsed_body'])->
+        withUploadedFiles($json['files'])->
+        withQueryParams($json['query_params'])->
+        withCookieParams($json['cookie_params'])
+    ;
+
+    foreach ($json['attributes'] as $key => $value) {
+        $request = $request->withAttribute($key, $value);
+    }
+
+    if (count($json['files']) > 0) {
+        foreach ($json['files'] as $key => $file) {
+            $json['files'][$key] = psr7_uploaded_file_decode($file);
+        }
+        $json['files'] = Hash::expand($json['files']);
+        $request = $request->withUploadedFiles($json['files']);
+    }
+
+    return $request;
 }
