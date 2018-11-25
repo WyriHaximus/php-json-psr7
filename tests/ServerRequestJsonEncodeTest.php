@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -8,9 +8,12 @@ use RingCentral\Psr7\ServerRequest;
 use WyriHaximus;
 use function RingCentral\Psr7\stream_for;
 
+/**
+ * @internal
+ */
 final class ServerRequestJsonEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $waterBottle = new UploadedFile(stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid');
         $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
@@ -20,7 +23,7 @@ final class ServerRequestJsonEncodeTest extends TestCase
                 'beer' => $beerBottle,
             ],
         ];
-        $time = time();
+        $time = \time();
         $request = (new ServerRequest(
             'GET',
             'https://www.example.com/?foo=bar',
@@ -47,7 +50,7 @@ final class ServerRequestJsonEncodeTest extends TestCase
 
         $json = WyriHaximus\psr7_server_request_json_encode($request);
         self::assertSame(
-            json_encode([
+            \json_encode([
                 'protocol_version' => '2.0',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/?foo=bar',

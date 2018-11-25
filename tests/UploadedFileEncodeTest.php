@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -7,9 +7,12 @@ use React\Http\Io\UploadedFile;
 use WyriHaximus;
 use function RingCentral\Psr7\stream_for;
 
+/**
+ * @internal
+ */
 final class UploadedFileEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
 

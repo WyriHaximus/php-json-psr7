@@ -1,13 +1,16 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class ResponseDecodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $json = [
             'protocol_version' => '2.0',
@@ -37,7 +40,7 @@ final class ResponseDecodeTest extends TestCase
      * @expectedException WyriHaximus\NotAnEncodedResponseException
      * @expectedExceptionMessage "[]" is not an encoded PSR-7 response, field "protocol_version" is missing
      */
-    public function testFailure()
+    public function testFailure(): void
     {
         WyriHaximus\psr7_response_decode([]);
     }

@@ -1,15 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class RequestJsonDecodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
-        $json = json_encode([
+        $json = \json_encode([
             'protocol_version' => '2.0',
             'method' => 'GET',
             'uri' => 'https://www.example.com/',
@@ -43,7 +46,7 @@ final class RequestJsonDecodeTest extends TestCase
      * @expectedException WyriHaximus\NotAnEncodedRequestException
      * @expectedExceptionMessage "[]" is not an encoded PSR-7 request, field "protocol_version" is missing
      */
-    public function testFailure()
+    public function testFailure(): void
     {
         WyriHaximus\psr7_request_json_decode('[]');
     }

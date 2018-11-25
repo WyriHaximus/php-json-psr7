@@ -1,15 +1,18 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class UploadedFileJsonDecodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
-        $json = json_encode([
+        $json = \json_encode([
             'filename' => 'beer.bottle',
             'media_type' => 'earth/liquid',
             'error' => 0,
@@ -29,7 +32,7 @@ final class UploadedFileJsonDecodeTest extends TestCase
      * @expectedException WyriHaximus\NotAnEncodedUploadedFileException
      * @expectedExceptionMessage "[]" is not an encoded PSR-7 uploaded file, field "stream" is missing
      */
-    public function testFailure()
+    public function testFailure(): void
     {
         WyriHaximus\psr7_uploaded_file_json_decode('[]');
     }

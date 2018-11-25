@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -6,9 +6,12 @@ use PHPUnit\Framework\TestCase;
 use RingCentral\Psr7\Request;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class RequestEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $request = new Request(
             'GET',

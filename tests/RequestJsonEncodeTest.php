@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -6,9 +6,12 @@ use PHPUnit\Framework\TestCase;
 use RingCentral\Psr7\Request;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class RequestJsonEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $request = new Request(
             'GET',
@@ -22,7 +25,7 @@ final class RequestJsonEncodeTest extends TestCase
 
         $json = WyriHaximus\psr7_request_json_encode($request);
         self::assertSame(
-            json_encode([
+            \json_encode([
                 'protocol_version' => '2.0',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/',

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -8,9 +8,12 @@ use RingCentral\Psr7\ServerRequest;
 use WyriHaximus;
 use function RingCentral\Psr7\stream_for;
 
+/**
+ * @internal
+ */
 final class ServerRequestEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $waterBottle = new UploadedFile(stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid');
         $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
@@ -20,7 +23,7 @@ final class ServerRequestEncodeTest extends TestCase
                 'beer' => $beerBottle,
             ],
         ];
-        $time = time();
+        $time = \time();
         $request = (new ServerRequest(
             'GET',
             'https://www.example.com/?foo=bar',

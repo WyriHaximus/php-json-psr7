@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^7.2",
         "cakephp/utility": "^3.5",
         "daverandom/exceptional-json": "^1.0",
         "psr/http-message": "^1.0",
@@ -18,10 +18,8 @@
         "wyrihaximus/json-utilities": "^1.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.2",
-        "jakub-onderka/php-console-highlighter": "^0.4",
-        "jakub-onderka/php-parallel-lint": "^1.0.0",
-        "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0"
+        "api-clients/cs-fixer-config": "^1.1",
+        "api-clients/test-utilities": "^5.2"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +35,7 @@
     "config": {
         "sort-packages": true,
         "platform": {
-            "php": "7.0.8"
+            "php": "7.2"
         }
     },
     "scripts": {

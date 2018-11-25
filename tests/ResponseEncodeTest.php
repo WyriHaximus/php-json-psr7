@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -6,9 +6,12 @@ use PHPUnit\Framework\TestCase;
 use RingCentral\Psr7\Response;
 use WyriHaximus;
 
+/**
+ * @internal
+ */
 final class ResponseEncodeTest extends TestCase
 {
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $response = new Response(
             200,

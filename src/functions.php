@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus;
 
@@ -25,7 +25,7 @@ function psr7_response_encode(ResponseInterface $response): array
     $json['status_code'] = $response->getStatusCode();
     $json['reason_phrase'] = $response->getReasonPhrase();
     $json['headers'] = $response->getHeaders();
-    $json['body'] = base64_encode($response->getBody()->getContents());
+    $json['body'] = \base64_encode($response->getBody()->getContents());
 
     return $json;
 }
@@ -56,7 +56,7 @@ function psr7_response_decode(array $json): ResponseInterface
     return new Response(
         $json['status_code'],
         $json['headers'],
-        base64_decode($json['body'], true),
+        \base64_decode($json['body'], true),
         $json['protocol_version'],
         $json['reason_phrase']
     );
@@ -74,7 +74,7 @@ function psr7_request_encode(RequestInterface $request): array
     $json['method'] = $request->getMethod();
     $json['uri'] = (string)$request->getUri();
     $json['headers'] = $request->getHeaders();
-    $json['body'] = base64_encode($request->getBody()->getContents());
+    $json['body'] = \base64_encode($request->getBody()->getContents());
 
     return $json;
 }
@@ -106,7 +106,7 @@ function psr7_request_decode(array $json): RequestInterface
         $json['method'],
         $json['uri'],
         $json['headers'],
-        base64_decode($json['body'], true),
+        \base64_decode($json['body'], true),
         $json['protocol_version']
     );
 }
@@ -123,7 +123,7 @@ function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
     $json['media_type'] = $uploadedFile->getClientMediaType();
     $json['error'] = $uploadedFile->getError();
     $json['size'] = $uploadedFile->getSize();
-    $json['stream'] = base64_encode($uploadedFile->getStream()->getContents());
+    $json['stream'] = \base64_encode($uploadedFile->getStream()->getContents());
 
     return $json;
 }
@@ -152,7 +152,7 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
     validate_array($json, $properties, NotAnEncodedUploadedFileException::class);
 
     return new UploadedFile(
-        stream_for(base64_decode($json['stream'], true)),
+        stream_for(\base64_decode($json['stream'], true)),
         $json['size'],
         $json['error'],
         $json['filename'],
@@ -176,7 +176,7 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
     $json['server_params'] = $request->getServerParams();
     $json['headers'] = $request->getHeaders();
     $json['attributes'] = $request->getAttributes();
-    $json['body'] = base64_encode($request->getBody()->getContents());
+    $json['body'] = \base64_encode($request->getBody()->getContents());
     $json['parsed_body'] = $request->getParsedBody();
     $json['files'] = $request->getUploadedFiles();
     $json['files'] = Hash::flatten($json['files']);
@@ -222,7 +222,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         $json['method'],
         $json['uri'],
         $json['headers'],
-        base64_decode($json['body'], true),
+        \base64_decode($json['body'], true),
         $json['protocol_version'],
         $json['server_params']
     ))->
@@ -236,7 +236,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         $request = $request->withAttribute($key, $value);
     }
 
-    if (count($json['files']) > 0) {
+    if (\count($json['files']) > 0) {
         foreach ($json['files'] as $key => $file) {
             $json['files'][$key] = psr7_uploaded_file_decode($file);
         }
