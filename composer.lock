@@ -1,23 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "3a7f80beba78cec99537b523874afc90",
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "3.6.13",
+            "version": "3.6.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "82741aeb90ca2fbbf9fbbd507d56d53b081db237"
+                "reference": "d2194de536b4de9dbc73360e27b430397aa6f0f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/82741aeb90ca2fbbf9fbbd507d56d53b081db237",
-                "reference": "82741aeb90ca2fbbf9fbbd507d56d53b081db237",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/d2194de536b4de9dbc73360e27b430397aa6f0f7",
+                "reference": "d2194de536b4de9dbc73360e27b430397aa6f0f7",
                 "shasum": ""
             },
             "require": {
@@ -53,11 +53,11 @@
                 "core",
                 "framework"
             ],
-            "time": "2018-07-26T19:56:06+00:00"
+            "time": "2018-11-11T17:05:12+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.6.13",
+            "version": "3.6.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
