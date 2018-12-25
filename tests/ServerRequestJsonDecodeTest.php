@@ -94,14 +94,14 @@ final class ServerRequestJsonDecodeTest extends TestCase
         self::assertSame('water.bottle', $files['root']['water']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['water']->getClientMediaType());
         self::assertSame('Water', $files['root']['water']->getStream()->getContents());
-        self::assertSame(UPLOAD_ERR_OK, $files['root']['water']->getError());
+        self::assertSame(\UPLOAD_ERR_OK, $files['root']['water']->getError());
 
         self::assertInstanceOf(UploadedFileInterface::class, $files['root']['beer']);
         self::assertSame(14, $files['root']['beer']->getSize());
         self::assertSame('beer.bottle', $files['root']['beer']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['beer']->getClientMediaType());
         self::assertSame('Dark Horizon 5', $files['root']['beer']->getStream()->getContents());
-        self::assertSame(UPLOAD_ERR_OK, $files['root']['beer']->getError());
+        self::assertSame(\UPLOAD_ERR_OK, $files['root']['beer']->getError());
     }
 
     /**
