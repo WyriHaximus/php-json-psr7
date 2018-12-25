@@ -15,8 +15,8 @@ final class ServerRequestJsonEncodeTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $waterBottle = new UploadedFile(stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid');
-        $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
+        $waterBottle = new UploadedFile(stream_for('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid');
+        $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
         $files = [
             'root' => [
                 'water' => $waterBottle,

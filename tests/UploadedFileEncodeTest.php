@@ -14,7 +14,7 @@ final class UploadedFileEncodeTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
+        $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
 
         $json = WyriHaximus\psr7_uploaded_file_encode($beerBottle);
         self::assertSame(
