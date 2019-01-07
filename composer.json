@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "cakephp/utility": "^3.5",
+        "cakephp/utility": "^3.7",
         "daverandom/exceptional-json": "^1.0",
         "psr/http-message": "^1.0",
         "react/http": "^0.8.1",
