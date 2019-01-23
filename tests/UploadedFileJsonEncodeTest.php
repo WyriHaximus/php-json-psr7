@@ -4,8 +4,8 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use React\Http\Io\UploadedFile;
-use WyriHaximus;
 use function RingCentral\Psr7\stream_for;
+use WyriHaximus;
 
 /**
  * @internal
