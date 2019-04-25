@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "3.7.6",
+            "version": "3.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "9742e7b325566df2e5ffcbdadc41049b9fa505fe"
+                "reference": "f9d9823439e3c82fdb3f69d2c9210bab67e721af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/9742e7b325566df2e5ffcbdadc41049b9fa505fe",
-                "reference": "9742e7b325566df2e5ffcbdadc41049b9fa505fe",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/f9d9823439e3c82fdb3f69d2c9210bab67e721af",
+                "reference": "f9d9823439e3c82fdb3f69d2c9210bab67e721af",
                 "shasum": ""
             },
             "require": {
@@ -54,11 +54,11 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-03-14T15:11:58+00:00"
+            "time": "2019-04-15T14:21:39+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.7.6",
+            "version": "3.7.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
@@ -5310,7 +5310,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
