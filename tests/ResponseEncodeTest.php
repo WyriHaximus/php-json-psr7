@@ -38,5 +38,7 @@ final class ResponseEncodeTest extends TestCase
             ],
             $json
         );
+
+        self::assertSame('beer', (string)$response->getBody());
     }
 }

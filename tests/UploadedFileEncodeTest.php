@@ -27,5 +27,7 @@ final class UploadedFileEncodeTest extends TestCase
             ],
             $json
         );
+
+        self::assertSame('Dark Horizon 5', (string)$beerBottle->getStream());
     }
 }

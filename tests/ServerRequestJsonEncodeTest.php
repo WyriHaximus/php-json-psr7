@@ -96,5 +96,9 @@ final class ServerRequestJsonEncodeTest extends TestCase
             ]),
             $json
         );
+
+        self::assertSame('Water', (string)$waterBottle->getStream());
+        self::assertSame('Dark Horizon 5', (string)$beerBottle->getStream());
+        self::assertSame('beer', (string)$request->getBody());
     }
 }

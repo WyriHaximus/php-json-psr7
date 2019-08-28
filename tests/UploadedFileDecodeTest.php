@@ -25,7 +25,8 @@ final class UploadedFileDecodeTest extends TestCase
         self::assertSame(0, $file->getError());
         self::assertSame('earth/liquid', $file->getClientMediaType());
         self::assertSame('beer.bottle', $file->getClientFilename());
-        self::assertSame('Dark Horizon 5', $file->getStream()->getContents());
+        self::assertSame('Dark Horizon 5', (string)$file->getStream());
+        self::assertSame('Dark Horizon 5', (string)$file->getStream());
     }
 
     /**

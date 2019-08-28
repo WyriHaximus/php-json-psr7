@@ -33,7 +33,8 @@ final class ResponseDecodeTest extends TestCase
                 'bar',
             ],
         ], $response->getHeaders());
-        self::assertSame('beer', $response->getBody()->getContents());
+        self::assertSame('beer', (string)$response->getBody());
+        self::assertSame('beer', (string)$response->getBody());
     }
 
     /**

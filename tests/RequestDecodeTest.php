@@ -39,7 +39,8 @@ final class RequestDecodeTest extends TestCase
                 'bar',
             ],
         ], $request->getHeaders());
-        self::assertSame('beer', $request->getBody()->getContents());
+        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string)$request->getBody());
     }
 
     /**

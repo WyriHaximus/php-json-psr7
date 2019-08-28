@@ -71,7 +71,8 @@ final class ServerRequestJsonDecodeTest extends TestCase
                 'bar',
             ],
         ], $request->getHeaders());
-        self::assertSame('beer', $request->getBody()->getContents());
+        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string)$request->getBody());
         self::assertSame([
             'REQUEST_TIME' => $time,
             'QUERY_STRING' => 'foo=bar',
@@ -93,14 +94,16 @@ final class ServerRequestJsonDecodeTest extends TestCase
         self::assertSame(5, $files['root']['water']->getSize());
         self::assertSame('water.bottle', $files['root']['water']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['water']->getClientMediaType());
-        self::assertSame('Water', $files['root']['water']->getStream()->getContents());
+        self::assertSame('Water', (string)$files['root']['water']->getStream());
+        self::assertSame('Water', (string)$files['root']['water']->getStream());
         self::assertSame(\UPLOAD_ERR_OK, $files['root']['water']->getError());
 
         self::assertInstanceOf(UploadedFileInterface::class, $files['root']['beer']);
         self::assertSame(14, $files['root']['beer']->getSize());
         self::assertSame('beer.bottle', $files['root']['beer']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['beer']->getClientMediaType());
-        self::assertSame('Dark Horizon 5', $files['root']['beer']->getStream()->getContents());
+        self::assertSame('Dark Horizon 5', (string)$files['root']['beer']->getStream());
+        self::assertSame('Dark Horizon 5', (string)$files['root']['beer']->getStream());
         self::assertSame(\UPLOAD_ERR_OK, $files['root']['beer']->getError());
     }
 

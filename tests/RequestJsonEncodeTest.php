@@ -41,5 +41,7 @@ final class RequestJsonEncodeTest extends TestCase
             ]),
             $json
         );
+
+        self::assertSame('beer', (string)$request->getBody());
     }
 }
