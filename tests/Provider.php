@@ -16,6 +16,10 @@ use RingCentral\Psr7\Response as RinCentralResponse;
 use RingCentral\Psr7\ServerRequest as RinCentralServerRequest;
 use function RingCentral\Psr7\stream_for as ring_central_stream_for;
 use WyriHaximus;
+use Zend\Diactoros\Request as ZendDiactorosRequest;
+use Zend\Diactoros\Response as ZendDiactorosResponse;
+use Zend\Diactoros\ServerRequest as ZendDiactorosServerRequest;
+use Zend\Diactoros\StreamFactory as ZendDiactorosStreamFactory;
 
 /**
  * @internal
@@ -59,6 +63,17 @@ final class Provider
                 '2'
             ),
         ];
+
+        yield 'zend-diactoros' => [
+            (new ZendDiactorosRequest(
+                'https://www.example.com/',
+                'GET',
+                (new ZendDiactorosStreamFactory())->createStream('beer'),
+                [
+                    'foo' => 'bar',
+                ]
+            ))->withProtocolVersion('2'),
+        ];
     }
 
     public function response(): iterable
@@ -97,6 +112,16 @@ final class Provider
                 '2',
                 'awesome'
             ),
+        ];
+
+        yield 'zend-diactoros' => [
+            (new ZendDiactorosResponse(
+                (new ZendDiactorosStreamFactory())->createStream('beer'),
+                200,
+                [
+                    'foo' => 'bar',
+                ]
+            ))->withProtocolVersion('2'),
         ];
     }
 
@@ -191,6 +216,32 @@ final class Provider
                 ;
 
                 yield 'nyholm_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
+
+                $request = (new ZendDiactorosServerRequest(
+                    [
+                        'REQUEST_TIME' => $time,
+                        'QUERY_STRING' => 'foo=bar',
+                    ],
+                    $files,
+                    'https://www.example.com/?foo=bar',
+                    'GET',
+                    (new ZendDiactorosStreamFactory())->createStream('beer'),
+                    [
+                        'foo' => 'bar',
+                    ]
+                ))->
+                    withAttribute('beer', 'Dark Horizon 5')->
+                    withParsedBody(['Dark Horizon 5'])->
+                    withQueryParams([
+                        'foo' => 'bar',
+                    ])->
+                    withCookieParams([
+                        'remember_me' => 'yes',
+                    ])->
+                    withProtocolVersion('2')
+                ;
+
+                yield 'zend-diactoros_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
             }
         }
     }
@@ -208,6 +259,10 @@ final class Provider
         yield 'nyholm' => [
             new UploadedFile(NyholmStream::create('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
+
+        yield 'zend-diactoros' => [
+            new UploadedFile((new ZendDiactorosStreamFactory())->createStream('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+        ];
     }
 
     public function uploadedFileBeerBottle(): iterable
@@ -222,6 +277,10 @@ final class Provider
 
         yield 'nyholm' => [
             new UploadedFile(NyholmStream::create('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+        ];
+
+        yield 'zend-diactoros' => [
+            new UploadedFile((new ZendDiactorosStreamFactory())->createStream('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
     }
 }
