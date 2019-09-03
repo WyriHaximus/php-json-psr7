@@ -43,12 +43,11 @@ final class RequestDecodeTest extends TestCase
         self::assertSame('beer', (string)$request->getBody());
     }
 
-    /**
-     * @expectedException WyriHaximus\NotAnEncodedRequestException
-     * @expectedExceptionMessage "[]" is not an encoded PSR-7 request, field "protocol_version" is missing
-     */
     public function testFailure(): void
     {
+        self::expectException(WyriHaximus\NotAnEncodedRequestException::class);
+        self::expectExceptionMessage('"[]" is not an encoded PSR-7 request, field "protocol_version" is missing');
+
         WyriHaximus\psr7_request_decode([]);
     }
 }

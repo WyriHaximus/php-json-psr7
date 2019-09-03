@@ -107,12 +107,11 @@ final class ServerRequestJsonDecodeTest extends TestCase
         self::assertSame(\UPLOAD_ERR_OK, $files['root']['beer']->getError());
     }
 
-    /**
-     * @expectedException WyriHaximus\NotAnEncodedServerRequestException
-     * @expectedExceptionMessage "[]" is not an encoded PSR-7 server request, field "protocol_version" is missing
-     */
     public function testFailure(): void
     {
+        self::expectException(WyriHaximus\NotAnEncodedServerRequestException::class);
+        self::expectExceptionMessage('"[]" is not an encoded PSR-7 server request, field "protocol_version" is missing');
+
         WyriHaximus\psr7_server_request_json_decode('[]');
     }
 }

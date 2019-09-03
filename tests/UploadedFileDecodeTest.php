@@ -29,12 +29,11 @@ final class UploadedFileDecodeTest extends TestCase
         self::assertSame('Dark Horizon 5', (string)$file->getStream());
     }
 
-    /**
-     * @expectedException WyriHaximus\NotAnEncodedUploadedFileException
-     * @expectedExceptionMessage "[]" is not an encoded PSR-7 uploaded file, field "stream" is missing
-     */
     public function testFailure(): void
     {
+        self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
+        self::expectExceptionMessage('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');
+
         WyriHaximus\psr7_uploaded_file_decode([]);
     }
 }
