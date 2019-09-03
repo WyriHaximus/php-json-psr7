@@ -3,6 +3,7 @@
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 use RingCentral\Psr7\Request;
 use WyriHaximus;
 
@@ -11,18 +12,11 @@ use WyriHaximus;
  */
 final class RequestJsonEncodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /**
+     * @dataProvider \WyriHaximus\Tests\Provider::request
+     */
+    public function testSuccess(RequestInterface $request): void
     {
-        $request = new Request(
-            'GET',
-            'https://www.example.com/',
-            [
-                'foo' => 'bar',
-            ],
-            'beer',
-            '2.0'
-        );
-
         $json = WyriHaximus\psr7_request_json_encode($request);
         self::assertSame(
             \json_encode([
