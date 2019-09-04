@@ -21,7 +21,7 @@ final class ServerRequestJsonEncodeTest extends TestCase
         $json = WyriHaximus\psr7_server_request_json_encode($request);
         self::assertSame(
             \json_encode([
-                'protocol_version' => '2.0',
+                'protocol_version' => '2',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/?foo=bar',
                 'query_params' => [
@@ -46,7 +46,9 @@ final class ServerRequestJsonEncodeTest extends TestCase
                     'beer' => 'Dark Horizon 5',
                 ],
                 'body' => 'YmVlcg==',
-                'parsed_body' => 'Dark Horizon 5',
+                'parsed_body' => [
+                    'Dark Horizon 5',
+                ],
                 'files' => [
                     'root.water' => [
                         'filename' => 'water.bottle',

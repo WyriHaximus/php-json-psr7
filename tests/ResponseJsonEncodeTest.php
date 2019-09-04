@@ -20,7 +20,7 @@ final class ResponseJsonEncodeTest extends TestCase
         $json = WyriHaximus\psr7_response_json_encode($response);
         self::assertSame(
             \json_encode([
-                'protocol_version' => '2.0',
+                'protocol_version' => '2',
                 'status_code' => 200,
                 'reason_phrase' => 'awesome',
                 'headers' => [

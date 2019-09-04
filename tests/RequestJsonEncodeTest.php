@@ -20,7 +20,7 @@ final class RequestJsonEncodeTest extends TestCase
         $json = WyriHaximus\psr7_request_json_encode($request);
         self::assertSame(
             \json_encode([
-                'protocol_version' => '2.0',
+                'protocol_version' => '2',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/',
                 'headers' => [

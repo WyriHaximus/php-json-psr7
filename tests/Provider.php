@@ -41,7 +41,7 @@ final class Provider
                     'foo' => 'bar',
                 ],
                 'beer',
-                '2.0'
+                '2'
             ),
         ];
 
@@ -103,7 +103,7 @@ final class Provider
                     'foo' => 'bar',
                 ],
                 'beer',
-                '2.0',
+                '2',
                 'awesome'
             ),
         ];
@@ -174,7 +174,7 @@ final class Provider
                         'foo' => 'bar',
                     ],
                     'beer',
-                    '2.0',
+                    '2',
                     [
                         'REQUEST_TIME' => $time,
                         'QUERY_STRING' => 'foo=bar',

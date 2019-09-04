@@ -15,7 +15,7 @@ final class ServerRequestJsonDecodeTest extends TestCase
     {
         $time = \time();
         $json = \json_encode([
-            'protocol_version' => '2.0',
+            'protocol_version' => '2',
             'method' => 'GET',
             'uri' => 'https://www.example.com/?foo=bar',
             'query_params' => [
@@ -40,7 +40,9 @@ final class ServerRequestJsonDecodeTest extends TestCase
                 'beer' => 'Dark Horizon 5',
             ],
             'body' => 'YmVlcg==',
-            'parsed_body' => 'Dark Horizon 5',
+            'parsed_body' => [
+                'Dark Horizon 5',
+            ],
             'files' => [
                 'root.water' => [
                     'filename' => 'water.bottle',
@@ -60,7 +62,7 @@ final class ServerRequestJsonDecodeTest extends TestCase
         ]);
 
         $request = WyriHaximus\psr7_server_request_json_decode($json);
-        self::assertSame('2.0', $request->getProtocolVersion());
+        self::assertSame('2', $request->getProtocolVersion());
         self::assertSame('GET', $request->getMethod());
         self::assertSame('https://www.example.com/?foo=bar', (string)$request->getUri());
         self::assertSame([

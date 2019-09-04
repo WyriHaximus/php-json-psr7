@@ -13,7 +13,7 @@ final class ResponseJsonDecodeTest extends TestCase
     public function testSuccess(): void
     {
         $json = \json_encode([
-            'protocol_version' => '2.0',
+            'protocol_version' => '2',
             'status_code' => 200,
             'reason_phrase' => 'awesome',
             'headers' => [
@@ -25,7 +25,7 @@ final class ResponseJsonDecodeTest extends TestCase
         ]);
 
         $response = WyriHaximus\psr7_response_json_decode($json);
-        self::assertSame('2.0', $response->getProtocolVersion());
+        self::assertSame('2', $response->getProtocolVersion());
         self::assertSame(200, $response->getStatusCode());
         self::assertSame('awesome', $response->getReasonPhrase());
         self::assertSame([
