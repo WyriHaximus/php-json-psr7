@@ -25,7 +25,7 @@ function psr7_response_encode(ResponseInterface $response): array
     $json['status_code'] = $response->getStatusCode();
     $json['reason_phrase'] = $response->getReasonPhrase();
     $json['headers'] = $response->getHeaders();
-    $json['body'] = \base64_encode($response->getBody()->getContents());
+    $json['body'] = \base64_encode((string)$response->getBody());
 
     return $json;
 }
@@ -74,7 +74,7 @@ function psr7_request_encode(RequestInterface $request): array
     $json['method'] = $request->getMethod();
     $json['uri'] = (string)$request->getUri();
     $json['headers'] = $request->getHeaders();
-    $json['body'] = \base64_encode($request->getBody()->getContents());
+    $json['body'] = \base64_encode((string)$request->getBody());
 
     return $json;
 }
@@ -123,7 +123,7 @@ function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
     $json['media_type'] = $uploadedFile->getClientMediaType();
     $json['error'] = $uploadedFile->getError();
     $json['size'] = $uploadedFile->getSize();
-    $json['stream'] = \base64_encode($uploadedFile->getStream()->getContents());
+    $json['stream'] = \base64_encode((string)$uploadedFile->getStream());
 
     return $json;
 }
@@ -176,7 +176,7 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
     $json['server_params'] = $request->getServerParams();
     $json['headers'] = $request->getHeaders();
     $json['attributes'] = $request->getAttributes();
-    $json['body'] = \base64_encode($request->getBody()->getContents());
+    $json['body'] = \base64_encode((string)$request->getBody());
     $json['parsed_body'] = $request->getParsedBody();
     $json['files'] = $request->getUploadedFiles();
     $json['files'] = Hash::flatten($json['files']);
