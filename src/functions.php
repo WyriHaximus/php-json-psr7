@@ -24,7 +24,7 @@ function psr7_response_encode(ResponseInterface $response): array
     $json['protocol_version'] = $response->getProtocolVersion();
     $json['status_code'] = $response->getStatusCode();
     $json['reason_phrase'] = $response->getReasonPhrase();
-    $json['headers'] = $response->getHeaders();
+    $json['headers'] = sort_headers($response->getHeaders());
     $json['body'] = \base64_encode((string)$response->getBody());
 
     return $json;
@@ -73,7 +73,7 @@ function psr7_request_encode(RequestInterface $request): array
     $json['protocol_version'] = $request->getProtocolVersion();
     $json['method'] = $request->getMethod();
     $json['uri'] = (string)$request->getUri();
-    $json['headers'] = $request->getHeaders();
+    $json['headers'] = sort_headers($request->getHeaders());
     $json['body'] = \base64_encode((string)$request->getBody());
 
     return $json;
@@ -174,7 +174,7 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
     $json['query_params'] = $request->getQueryParams();
     $json['cookie_params'] = $request->getCookieParams();
     $json['server_params'] = $request->getServerParams();
-    $json['headers'] = $request->getHeaders();
+    $json['headers'] = sort_headers($request->getHeaders());
     $json['attributes'] = $request->getAttributes();
     $json['body'] = \base64_encode((string)$request->getBody());
     $json['parsed_body'] = $request->getParsedBody();
@@ -245,4 +245,11 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
     }
 
     return $request;
+}
+
+function sort_headers(array $headers): array
+{
+    \ksort($headers);
+
+    return $headers;
 }
