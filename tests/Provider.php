@@ -15,6 +15,11 @@ use RingCentral\Psr7\Request as RinCentralRequest;
 use RingCentral\Psr7\Response as RinCentralResponse;
 use RingCentral\Psr7\ServerRequest as RinCentralServerRequest;
 use function RingCentral\Psr7\stream_for as ring_central_stream_for;
+use Slim\Psr7\Factory\StreamFactory as SlimStreamFactory;
+use Slim\Psr7\Headers as SlimHeaders;
+use Slim\Psr7\Request as SlimRequest;
+use Slim\Psr7\Response as SlimResponse;
+use Slim\Psr7\Uri as SlimUri;
 use WyriHaximus;
 use Zend\Diactoros\Request as ZendDiactorosRequest;
 use Zend\Diactoros\Response as ZendDiactorosResponse;
@@ -74,6 +79,19 @@ final class Provider
                 ]
             ))->withProtocolVersion('2'),
         ];
+
+        yield 'slim' => [
+            (new SlimRequest(
+                'GET',
+                new SlimUri('https', 'www.example.com'),
+                new SlimHeaders([
+                    'foo' => 'bar',
+                ]),
+                [],
+                [],
+                (new SlimStreamFactory())->createStream('beer')
+            ))->withProtocolVersion('2'),
+        ];
     }
 
     public function response(): iterable
@@ -121,6 +139,16 @@ final class Provider
                 [
                     'foo' => 'bar',
                 ]
+            ))->withProtocolVersion('2'),
+        ];
+
+        yield 'slim' => [
+            (new SlimResponse(
+                200,
+                new SlimHeaders([
+                    'foo' => 'bar',
+                ]),
+                (new SlimStreamFactory())->createStream('beer')
             ))->withProtocolVersion('2'),
         ];
     }
@@ -242,6 +270,33 @@ final class Provider
                 ;
 
                 yield 'zend-diactoros_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
+
+                $request = (new SlimRequest(
+                    'GET',
+                    new SlimUri('https', 'www.example.com', null, '/', 'foo=bar'),
+                    new SlimHeaders([
+                        'foo' => 'bar',
+                    ]),
+                    [],
+                    [
+                        'REQUEST_TIME' => $time,
+                        'QUERY_STRING' => 'foo=bar',
+                    ],
+                    (new SlimStreamFactory())->createStream('beer'),
+                    $files
+                ))->
+                    withAttribute('beer', 'Dark Horizon 5')->
+                    withParsedBody(['Dark Horizon 5'])->
+                    withQueryParams([
+                        'foo' => 'bar',
+                    ])->
+                    withCookieParams([
+                        'remember_me' => 'yes',
+                    ])->
+                    withProtocolVersion('2')
+                ;
+
+                yield 'slim_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
             }
         }
     }
@@ -263,6 +318,10 @@ final class Provider
         yield 'zend-diactoros' => [
             new UploadedFile((new ZendDiactorosStreamFactory())->createStream('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
+
+        yield 'slim' => [
+            new UploadedFile((new SlimStreamFactory())->createStream('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+        ];
     }
 
     public function uploadedFileBeerBottle(): iterable
@@ -281,6 +340,10 @@ final class Provider
 
         yield 'zend-diactoros' => [
             new UploadedFile((new ZendDiactorosStreamFactory())->createStream('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+        ];
+
+        yield 'slim' => [
+            new UploadedFile((new SlimStreamFactory())->createStream('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
     }
 }
