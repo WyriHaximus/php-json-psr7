@@ -104,7 +104,7 @@ final class Provider
                 ],
                 'beer',
                 '2',
-                'awesome'
+                'OK'
             ),
         ];
 
@@ -116,7 +116,7 @@ final class Provider
                 ],
                 'beer',
                 '2',
-                'awesome'
+                'OK'
             ),
         ];
 
@@ -128,7 +128,7 @@ final class Provider
                 ],
                 'beer',
                 '2',
-                'awesome'
+                'OK'
             ),
         ];
 

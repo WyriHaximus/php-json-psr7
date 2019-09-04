@@ -22,7 +22,7 @@ final class ResponseEncodeTest extends TestCase
             [
                 'protocol_version' => '2',
                 'status_code' => 200,
-                'reason_phrase' => 'awesome',
+                'reason_phrase' => 'OK',
                 'headers' => [
                     'foo' => [
                         'bar',
