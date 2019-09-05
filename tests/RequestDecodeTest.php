@@ -13,7 +13,7 @@ final class RequestDecodeTest extends TestCase
     public function testSuccess(): void
     {
         $json = [
-            'protocol_version' => '2.0',
+            'protocol_version' => '2',
             'method' => 'GET',
             'uri' => 'https://www.example.com/',
             'headers' => [
@@ -28,7 +28,7 @@ final class RequestDecodeTest extends TestCase
         ];
 
         $request = WyriHaximus\psr7_request_decode($json);
-        self::assertSame('2.0', $request->getProtocolVersion());
+        self::assertSame('2', $request->getProtocolVersion());
         self::assertSame('GET', $request->getMethod());
         self::assertSame('https://www.example.com/', (string)$request->getUri());
         self::assertSame([
@@ -39,15 +39,15 @@ final class RequestDecodeTest extends TestCase
                 'bar',
             ],
         ], $request->getHeaders());
-        self::assertSame('beer', $request->getBody()->getContents());
+        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string)$request->getBody());
     }
 
-    /**
-     * @expectedException WyriHaximus\NotAnEncodedRequestException
-     * @expectedExceptionMessage "[]" is not an encoded PSR-7 request, field "protocol_version" is missing
-     */
     public function testFailure(): void
     {
+        self::expectException(WyriHaximus\NotAnEncodedRequestException::class);
+        self::expectExceptionMessage('"[]" is not an encoded PSR-7 request, field "protocol_version" is missing');
+
         WyriHaximus\psr7_request_decode([]);
     }
 }

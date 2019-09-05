@@ -19,7 +19,11 @@
     },
     "require-dev": {
         "api-clients/cs-fixer-config": "^1.1",
-        "api-clients/test-utilities": "^5.4"
+        "api-clients/test-utilities": "^5.4",
+        "guzzlehttp/psr7": "^1.6",
+        "nyholm/psr7": "^1.2",
+        "slim/psr7": "^0.5.0",
+        "zendframework/zend-diactoros": "^2.1"
     },
     "autoload": {
         "psr-4": {

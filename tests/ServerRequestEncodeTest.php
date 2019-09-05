@@ -3,9 +3,9 @@
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
-use React\Http\Io\UploadedFile;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Message\UploadedFileInterface;
 use RingCentral\Psr7\ServerRequest;
-use function RingCentral\Psr7\stream_for;
 use WyriHaximus;
 
 /**
@@ -13,45 +13,15 @@ use WyriHaximus;
  */
 final class ServerRequestEncodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /**
+     * @dataProvider \WyriHaximus\Tests\Provider::serverRequest
+     */
+    public function testSuccess(ServerRequestInterface $request, int $time, UploadedFileInterface $waterBottle, UploadedFileInterface $beerBottle): void
     {
-        $waterBottle = new UploadedFile(stream_for('Water'), 5, \UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid');
-        $beerBottle = new UploadedFile(stream_for('Dark Horizon 5'), 14, \UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid');
-        $files = [
-            'root' => [
-                'water' => $waterBottle,
-                'beer' => $beerBottle,
-            ],
-        ];
-        $time = \time();
-        $request = (new ServerRequest(
-            'GET',
-            'https://www.example.com/?foo=bar',
-            [
-                'foo' => 'bar',
-            ],
-            'beer',
-            '2.0',
-            [
-                'REQUEST_TIME' => $time,
-                'QUERY_STRING' => 'foo=bar',
-            ]
-        ))->
-            withAttribute('beer', 'Dark Horizon 5')->
-            withParsedBody('Dark Horizon 5')->
-            withUploadedFiles($files)->
-            withQueryParams([
-                'foo' => 'bar',
-            ])->
-            withCookieParams([
-                'remember_me' => 'yes',
-            ])
-        ;
-
         $json = WyriHaximus\psr7_server_request_encode($request);
         self::assertSame(
             [
-                'protocol_version' => '2.0',
+                'protocol_version' => '2',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/?foo=bar',
                 'query_params' => [
@@ -76,7 +46,9 @@ final class ServerRequestEncodeTest extends TestCase
                     'beer' => 'Dark Horizon 5',
                 ],
                 'body' => 'YmVlcg==',
-                'parsed_body' => 'Dark Horizon 5',
+                'parsed_body' => [
+                    'Dark Horizon 5',
+                ],
                 'files' => [
                     'root.water' => [
                         'filename' => 'water.bottle',
@@ -96,5 +68,9 @@ final class ServerRequestEncodeTest extends TestCase
             ],
             $json
         );
+
+        self::assertSame('Water', (string)$waterBottle->getStream());
+        self::assertSame('Dark Horizon 5', (string)$beerBottle->getStream());
+        self::assertSame('beer', (string)$request->getBody());
     }
 }

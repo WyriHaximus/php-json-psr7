@@ -25,15 +25,15 @@ final class UploadedFileJsonDecodeTest extends TestCase
         self::assertSame(0, $file->getError());
         self::assertSame('earth/liquid', $file->getClientMediaType());
         self::assertSame('beer.bottle', $file->getClientFilename());
-        self::assertSame('Dark Horizon 5', $file->getStream()->getContents());
+        self::assertSame('Dark Horizon 5', (string)$file->getStream());
+        self::assertSame('Dark Horizon 5', (string)$file->getStream());
     }
 
-    /**
-     * @expectedException WyriHaximus\NotAnEncodedUploadedFileException
-     * @expectedExceptionMessage "[]" is not an encoded PSR-7 uploaded file, field "stream" is missing
-     */
     public function testFailure(): void
     {
+        self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
+        self::expectExceptionMessage('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');
+
         WyriHaximus\psr7_uploaded_file_json_decode('[]');
     }
 }

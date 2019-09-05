@@ -3,6 +3,7 @@
 namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 use RingCentral\Psr7\Response;
 use WyriHaximus;
 
@@ -11,24 +12,17 @@ use WyriHaximus;
  */
 final class ResponseJsonEncodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /**
+     * @dataProvider \WyriHaximus\Tests\Provider::response
+     */
+    public function testSuccess(ResponseInterface $response): void
     {
-        $response = new Response(
-            200,
-            [
-                'foo' => 'bar',
-            ],
-            'beer',
-            '2.0',
-            'awesome'
-        );
-
         $json = WyriHaximus\psr7_response_json_encode($response);
         self::assertSame(
             \json_encode([
-                'protocol_version' => '2.0',
+                'protocol_version' => '2',
                 'status_code' => 200,
-                'reason_phrase' => 'awesome',
+                'reason_phrase' => 'OK',
                 'headers' => [
                     'foo' => [
                         'bar',
@@ -38,5 +32,7 @@ final class ResponseJsonEncodeTest extends TestCase
             ]),
             $json
         );
+
+        self::assertSame('beer', (string)$response->getBody());
     }
 }
