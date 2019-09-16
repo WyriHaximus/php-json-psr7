@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "4f7710dab6f9bf0483e42e189942b1941c070b72"
+                "reference": "47c3045326c92adbecd14cc92a2b7515dd9a30b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/4f7710dab6f9bf0483e42e189942b1941c070b72",
-                "reference": "4f7710dab6f9bf0483e42e189942b1941c070b72",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/47c3045326c92adbecd14cc92a2b7515dd9a30b9",
+                "reference": "47c3045326c92adbecd14cc92a2b7515dd9a30b9",
                 "shasum": ""
             },
             "require": {
@@ -54,20 +54,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-08-29T13:17:59+00:00"
+            "time": "2019-09-09T19:30:50+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.8.3",
+            "version": "3.8.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "0dcddfbc2d63335c5bce7cca6790fa434e4a8790"
+                "reference": "a90e4da0bd61fe2febcd68e6246bc974dcc43773"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/0dcddfbc2d63335c5bce7cca6790fa434e4a8790",
-                "reference": "0dcddfbc2d63335c5bce7cca6790fa434e4a8790",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/a90e4da0bd61fe2febcd68e6246bc974dcc43773",
+                "reference": "a90e4da0bd61fe2febcd68e6246bc974dcc43773",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2019-08-29T13:43:27+00:00"
+            "time": "2019-09-09T13:08:53+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
@@ -1471,8 +1471,8 @@
             "authors": [
                 {
                     "name": "Filipe Dobreira",
-                    "role": "Developer",
-                    "homepage": "https://github.com/filp"
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
                 }
             ],
             "description": "php error handling for cool kids",
@@ -3310,18 +3310,18 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Heuer",
-                    "role": "Developer",
-                    "email": "sebastian@phpeople.de"
+                    "email": "sebastian@phpeople.de",
+                    "role": "Developer"
                 },
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "Developer",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "Developer"
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
@@ -6311,8 +6311,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
