@@ -22,7 +22,7 @@
         "api-clients/test-utilities": "^5.4",
         "guzzlehttp/psr7": "^1.6",
         "nyholm/psr7": "^1.2",
-        "slim/psr7": "^0.5.0",
+        "slim/psr7": "^0.5.0 || ^0.6",
         "zendframework/zend-diactoros": "^2.1"
     },
     "autoload": {
