@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f70339e8a3561d98a2569e5532a4fc9c",
+    "content-hash": "620ef1409ef35e6ebf6dd9a00e0fb739",
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "3.8.7",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "e77b155f93fd63d1a944c07f27abc82651377956"
+                "reference": "e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/e77b155f93fd63d1a944c07f27abc82651377956",
-                "reference": "e77b155f93fd63d1a944c07f27abc82651377956",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec",
+                "reference": "e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec",
                 "shasum": ""
             },
             "require": {
-                "cakephp/utility": "^3.6.0",
-                "php": ">=5.6.0"
+                "cakephp/utility": "^4.0",
+                "php": ">=7.2.0"
             },
             "suggest": {
                 "cakephp/cache": "To use Configure::store() and restore().",
@@ -54,25 +54,25 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-11-19T13:39:32+00:00"
+            "time": "2019-11-26T02:27:16+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "3.8.7",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9"
+                "reference": "ae920be5f55a2f229ec116ec620173424b67b79a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9",
-                "reference": "e60bf1dc7fbdbc0d717c950cbbeb3196d3bc0cf9",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/ae920be5f55a2f229ec116ec620173424b67b79a",
+                "reference": "ae920be5f55a2f229ec116ec620173424b67b79a",
                 "shasum": ""
             },
             "require": {
-                "cakephp/core": "^3.6.0",
-                "php": ">=5.6.0"
+                "cakephp/core": "^4.0",
+                "php": ">=7.2.0"
             },
             "suggest": {
                 "ext-intl": "To use Text::transliterate() or Text::slug()",
@@ -107,7 +107,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2019-11-21T14:18:54+00:00"
+            "time": "2019-12-14T23:45:48+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
@@ -2084,6 +2084,7 @@
                 "json",
                 "normalizer"
             ],
+            "abandoned": "ergebnis/composer-json-normalizer",
             "time": "2019-01-09T14:43:16+00:00"
         },
         {
@@ -2201,6 +2202,7 @@
                 "json",
                 "normalizer"
             ],
+            "abandoned": "ergebnis/json-normalizer",
             "time": "2018-10-07T17:36:39+00:00"
         },
         {
@@ -2304,6 +2306,7 @@
                 "phpstan-extreme-rules",
                 "phpstan-rules"
             ],
+            "abandoned": "ergebnis/phpstan-rules",
             "time": "2019-01-17T22:24:11+00:00"
         },
         {
