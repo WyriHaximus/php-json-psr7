@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec"
+                "reference": "b43ab6486b6266f4db24a1c49e49b8ab2869e449"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec",
-                "reference": "e4a19ad27b5a3e58db65d5dbb6f9b2e41eeec3ec",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/b43ab6486b6266f4db24a1c49e49b8ab2869e449",
+                "reference": "b43ab6486b6266f4db24a1c49e49b8ab2869e449",
                 "shasum": ""
             },
             "require": {
@@ -54,11 +54,11 @@
                 "core",
                 "framework"
             ],
-            "time": "2019-11-26T02:27:16+00:00"
+            "time": "2019-12-28T05:48:23+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
@@ -2150,6 +2150,7 @@
                 "normalizer",
                 "plugin"
             ],
+            "abandoned": "ergebnis/composer-normalize",
             "time": "2019-03-13T14:42:11+00:00"
         },
         {
