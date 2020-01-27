@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "d3c44b4997d0055c2e98132b57d239280d76e641"
+                "reference": "809142547dfda0ae6035d880f769df3bd3e37cc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/d3c44b4997d0055c2e98132b57d239280d76e641",
-                "reference": "d3c44b4997d0055c2e98132b57d239280d76e641",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/809142547dfda0ae6035d880f769df3bd3e37cc8",
+                "reference": "809142547dfda0ae6035d880f769df3bd3e37cc8",
                 "shasum": ""
             },
             "require": {
@@ -54,20 +54,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-01-03T20:53:33+00:00"
+            "time": "2020-01-21T02:51:25+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "304e7b7dd87ea82edb6ad86ecdb283c5fef478fd"
+                "reference": "b0f8fb759e116053b75d40a864f479fdc03a9a1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/304e7b7dd87ea82edb6ad86ecdb283c5fef478fd",
-                "reference": "304e7b7dd87ea82edb6ad86ecdb283c5fef478fd",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/b0f8fb759e116053b75d40a864f479fdc03a9a1d",
+                "reference": "b0f8fb759e116053b75d40a864f479fdc03a9a1d",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-01-07T19:34:42+00:00"
+            "time": "2020-01-18T20:04:49+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
