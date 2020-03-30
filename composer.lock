@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "4.0.4",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "af49ea79f584583e1b55eae6fac657aee8bb17f5"
+                "reference": "161491ceeaf2bbb4471f5af9832ee08e4408a274"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/af49ea79f584583e1b55eae6fac657aee8bb17f5",
-                "reference": "af49ea79f584583e1b55eae6fac657aee8bb17f5",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/161491ceeaf2bbb4471f5af9832ee08e4408a274",
+                "reference": "161491ceeaf2bbb4471f5af9832ee08e4408a274",
                 "shasum": ""
             },
             "require": {
@@ -54,11 +54,11 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-02-07T20:50:22+00:00"
+            "time": "2020-03-18T18:19:21+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.0.4",
+            "version": "4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
@@ -1868,6 +1868,7 @@
             ],
             "description": "This tool check syntax of PHP files about 20x faster than serial check.",
             "homepage": "https://github.com/JakubOnderka/PHP-Parallel-Lint",
+            "abandoned": "php-parallel-lint/php-parallel-lint",
             "time": "2018-02-24T15:31:20+00:00"
         },
         {
