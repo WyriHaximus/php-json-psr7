@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "4.0.5",
+            "version": "4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "161491ceeaf2bbb4471f5af9832ee08e4408a274"
+                "reference": "d8463fec4f59cc1b9e4bd0faaa64991b130b961a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/161491ceeaf2bbb4471f5af9832ee08e4408a274",
-                "reference": "161491ceeaf2bbb4471f5af9832ee08e4408a274",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/d8463fec4f59cc1b9e4bd0faaa64991b130b961a",
+                "reference": "d8463fec4f59cc1b9e4bd0faaa64991b130b961a",
                 "shasum": ""
             },
             "require": {
@@ -54,20 +54,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-03-18T18:19:21+00:00"
+            "time": "2020-04-17T13:58:27+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.0.5",
+            "version": "4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "7e2fb6df26fe8912f364ae4adb58e3707483c598"
+                "reference": "6c6e2a2892d077fa5e6cfdf02e36a821452213af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/7e2fb6df26fe8912f364ae4adb58e3707483c598",
-                "reference": "7e2fb6df26fe8912f364ae4adb58e3707483c598",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/6c6e2a2892d077fa5e6cfdf02e36a821452213af",
+                "reference": "6c6e2a2892d077fa5e6cfdf02e36a821452213af",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-02-07T20:50:22+00:00"
+            "time": "2020-04-17T04:56:07+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
@@ -1774,6 +1774,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -1820,6 +1821,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
