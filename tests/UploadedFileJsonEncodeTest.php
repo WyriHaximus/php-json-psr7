@@ -5,6 +5,7 @@ namespace WyriHaximus\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
+use function Safe\json_encode;
 
 /**
  * @internal
@@ -18,7 +19,7 @@ final class UploadedFileJsonEncodeTest extends TestCase
     {
         $json = WyriHaximus\psr7_uploaded_file_json_encode($beerBottle);
         self::assertSame(
-            \json_encode([
+            json_encode([
                 'filename' => 'beer.bottle',
                 'media_type' => 'earth/liquid',
                 'error' => 0,
@@ -28,6 +29,6 @@ final class UploadedFileJsonEncodeTest extends TestCase
             $json
         );
 
-        self::assertSame('Dark Horizon 5', (string)$beerBottle->getStream());
+        self::assertSame('Dark Horizon 5', (string) $beerBottle->getStream());
     }
 }

@@ -17,12 +17,8 @@ final class RequestDecodeTest extends TestCase
             'method' => 'GET',
             'uri' => 'https://www.example.com/',
             'headers' => [
-                'Host' => [
-                    'www.example.com',
-                ],
-                'foo' => [
-                    'bar',
-                ],
+                'Host' => ['www.example.com'],
+                'foo' => ['bar'],
             ],
             'body' => 'YmVlcg==',
         ];
@@ -30,17 +26,13 @@ final class RequestDecodeTest extends TestCase
         $request = WyriHaximus\psr7_request_decode($json);
         self::assertSame('2', $request->getProtocolVersion());
         self::assertSame('GET', $request->getMethod());
-        self::assertSame('https://www.example.com/', (string)$request->getUri());
+        self::assertSame('https://www.example.com/', (string) $request->getUri());
         self::assertSame([
-            'Host' => [
-                'www.example.com',
-            ],
-            'foo' => [
-                'bar',
-            ],
+            'Host' => ['www.example.com'],
+            'foo' => ['bar'],
         ], $request->getHeaders());
-        self::assertSame('beer', (string)$request->getBody());
-        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string) $request->getBody());
+        self::assertSame('beer', (string) $request->getBody());
     }
 
     public function testFailure(): void
@@ -48,6 +40,7 @@ final class RequestDecodeTest extends TestCase
         self::expectException(WyriHaximus\NotAnEncodedRequestException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 request, field "protocol_version" is missing');
 
+        /** @phpstan-ignore-next-line */
         WyriHaximus\psr7_request_decode([]);
     }
 }

@@ -4,6 +4,7 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
+use function Safe\json_encode;
 
 /**
  * @internal
@@ -12,7 +13,7 @@ final class UploadedFileJsonDecodeTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $json = \json_encode([
+        $json = json_encode([
             'filename' => 'beer.bottle',
             'media_type' => 'earth/liquid',
             'error' => 0,
@@ -25,8 +26,8 @@ final class UploadedFileJsonDecodeTest extends TestCase
         self::assertSame(0, $file->getError());
         self::assertSame('earth/liquid', $file->getClientMediaType());
         self::assertSame('beer.bottle', $file->getClientFilename());
-        self::assertSame('Dark Horizon 5', (string)$file->getStream());
-        self::assertSame('Dark Horizon 5', (string)$file->getStream());
+        self::assertSame('Dark Horizon 5', (string) $file->getStream());
+        self::assertSame('Dark Horizon 5', (string) $file->getStream());
     }
 
     public function testFailure(): void

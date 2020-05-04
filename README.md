@@ -1,7 +1,6 @@
 # JSON encode and decode PSR-7 requests and responses
 
-[![Linux Build Status](https://travis-ci.org/WyriHaximus/php-json-psr7.png)](https://travis-ci.org/WyriHaximus/php-json-psr7)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/1sfdh9g2pvbuw4pp?svg=true)](https://ci.appveyor.com/project/WyriHaximus/php-json-psr7)
+![Continuous Integration](https://github.com/WyriHaximus/php-json-psr7/workflows/Continuous%20Integration/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/WyriHaximus/json-psr7/v/stable.png)](https://packagist.org/packages/WyriHaximus/json-psr7)
 [![Total Downloads](https://poser.pugx.org/WyriHaximus/json-psr7/downloads.png)](https://packagist.org/packages/WyriHaximus/json-psr7)
 [![Code Coverage](https://scrutinizer-ci.com/g/WyriHaximus/php-json-psr7/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/WyriHaximus/php-json-psr7/?branch=master)
@@ -13,17 +12,17 @@
 To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `~`.
 
 ```
-composer require wyrihaximus/json-psr7 
+composer require wyrihaximus/json-psr7
 ```
 
 # Requirements
 
-All encoding functions assume al streams are fully read and `getContents()` calls will return all contents for that 
-stream/body failure will result in missing stream/body parts. 
+All encoding functions assume al streams are fully read and `getContents()` calls will return all contents for that
+stream/body failure will result in missing stream/body parts.
 
 # Available functions
 
-All `*_decode` functions throw when there are items missing in the array. All functions throw when there is an error 
+All `*_decode` functions throw when there are items missing in the array. All functions throw when there is an error
 encoding/decoding to/from JSON.
 
 * `psr7_response_json_encode` - Encodes a PSR-7 Response to a JSON string
@@ -49,7 +48,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## License ##
 
-Copyright 2018 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
+Copyright 2020 [Cees-Jan Kiewiet](http://wyrihaximus.net/)
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

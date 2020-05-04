@@ -4,6 +4,7 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
+use function Safe\json_encode;
 
 /**
  * @internal
@@ -12,14 +13,12 @@ final class ResponseJsonDecodeTest extends TestCase
 {
     public function testSuccess(): void
     {
-        $json = \json_encode([
+        $json = json_encode([
             'protocol_version' => '2',
             'status_code' => 200,
             'reason_phrase' => 'awesome',
             'headers' => [
-                'foo' => [
-                    'bar',
-                ],
+                'foo' => ['bar'],
             ],
             'body' => 'YmVlcg==',
         ]);
@@ -29,12 +28,10 @@ final class ResponseJsonDecodeTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertSame('awesome', $response->getReasonPhrase());
         self::assertSame([
-            'foo' => [
-                'bar',
-            ],
+            'foo' => ['bar'],
         ], $response->getHeaders());
-        self::assertSame('beer', (string)$response->getBody());
-        self::assertSame('beer', (string)$response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
     }
 
     public function testFailure(): void

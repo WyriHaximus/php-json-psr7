@@ -17,9 +17,7 @@ final class ResponseDecodeTest extends TestCase
             'status_code' => 200,
             'reason_phrase' => 'awesome',
             'headers' => [
-                'foo' => [
-                    'bar',
-                ],
+                'foo' => ['bar'],
             ],
             'body' => 'YmVlcg==',
         ];
@@ -29,12 +27,10 @@ final class ResponseDecodeTest extends TestCase
         self::assertSame(200, $response->getStatusCode());
         self::assertSame('awesome', $response->getReasonPhrase());
         self::assertSame([
-            'foo' => [
-                'bar',
-            ],
+            'foo' => ['bar'],
         ], $response->getHeaders());
-        self::assertSame('beer', (string)$response->getBody());
-        self::assertSame('beer', (string)$response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
     }
 
     public function testFailure(): void
@@ -42,6 +38,7 @@ final class ResponseDecodeTest extends TestCase
         self::expectException(WyriHaximus\NotAnEncodedResponseException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 response, field "protocol_version" is missing');
 
+        /** @phpstan-ignore-next-line */
         WyriHaximus\psr7_response_decode([]);
     }
 }
