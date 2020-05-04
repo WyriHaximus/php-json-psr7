@@ -8,7 +8,7 @@
     "packages": [
         {
             "name": "cakephp/core",
-            "version": "4.0.6",
+            "version": "4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
@@ -58,16 +58,16 @@
         },
         {
             "name": "cakephp/utility",
-            "version": "4.0.6",
+            "version": "4.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "6c6e2a2892d077fa5e6cfdf02e36a821452213af"
+                "reference": "28c1444cd00d3fadc0a478fff60e7f6526b383bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/6c6e2a2892d077fa5e6cfdf02e36a821452213af",
-                "reference": "6c6e2a2892d077fa5e6cfdf02e36a821452213af",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/28c1444cd00d3fadc0a478fff60e7f6526b383bd",
+                "reference": "28c1444cd00d3fadc0a478fff60e7f6526b383bd",
                 "shasum": ""
             },
             "require": {
@@ -107,7 +107,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-04-17T04:56:07+00:00"
+            "time": "2020-04-22T13:00:10+00:00"
         },
         {
             "name": "daverandom/exceptional-json",
