@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         php: [7.4]
-        composer: [current, highest]
+        composer: [lowest, current, highest]
     runs-on: ubuntu-latest
     container:
       image: wyrihaximusnet/php:${{ matrix.php }}-zts-alpine3.11-dev-root
@@ -31,7 +31,7 @@ jobs:
     strategy:
       matrix:
         php: [7.4]
-        composer: [current, highest]
+        composer: [lowest, current, highest]
         qa: [lint, cs, stan, psalm, unit-ci, infection, composer-require-checker, composer-unused]
     needs: composer-install
     runs-on: ubuntu-latest
