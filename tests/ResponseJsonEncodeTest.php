@@ -4,8 +4,8 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use RingCentral\Psr7\Response;
 use WyriHaximus;
+use function Safe\json_encode;
 
 /**
  * @internal
@@ -19,20 +19,18 @@ final class ResponseJsonEncodeTest extends TestCase
     {
         $json = WyriHaximus\psr7_response_json_encode($response);
         self::assertSame(
-            \json_encode([
+            json_encode([
                 'protocol_version' => '2',
                 'status_code' => 200,
                 'reason_phrase' => 'OK',
                 'headers' => [
-                    'foo' => [
-                        'bar',
-                    ],
+                    'foo' => ['bar'],
                 ],
                 'body' => 'YmVlcg==',
             ]),
             $json
         );
 
-        self::assertSame('beer', (string)$response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
     }
 }

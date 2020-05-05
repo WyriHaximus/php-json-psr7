@@ -4,7 +4,6 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
-use RingCentral\Psr7\Response;
 use WyriHaximus;
 
 /**
@@ -24,15 +23,13 @@ final class ResponseEncodeTest extends TestCase
                 'status_code' => 200,
                 'reason_phrase' => 'OK',
                 'headers' => [
-                    'foo' => [
-                        'bar',
-                    ],
+                    'foo' => ['bar'],
                 ],
                 'body' => 'YmVlcg==',
             ],
             $json
         );
 
-        self::assertSame('beer', (string)$response->getBody());
+        self::assertSame('beer', (string) $response->getBody());
     }
 }

@@ -4,7 +4,6 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
-use RingCentral\Psr7\Request;
 use WyriHaximus;
 
 /**
@@ -24,18 +23,14 @@ final class RequestEncodeTest extends TestCase
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/',
                 'headers' => [
-                    'Host' => [
-                        'www.example.com',
-                    ],
-                    'foo' => [
-                        'bar',
-                    ],
+                    'Host' => ['www.example.com'],
+                    'foo' => ['bar'],
                 ],
                 'body' => 'YmVlcg==',
             ],
             $json
         );
 
-        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string) $request->getBody());
     }
 }

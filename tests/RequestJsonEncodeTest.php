@@ -4,8 +4,8 @@ namespace WyriHaximus\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
-use RingCentral\Psr7\Request;
 use WyriHaximus;
+use function Safe\json_encode;
 
 /**
  * @internal
@@ -19,23 +19,19 @@ final class RequestJsonEncodeTest extends TestCase
     {
         $json = WyriHaximus\psr7_request_json_encode($request);
         self::assertSame(
-            \json_encode([
+            json_encode([
                 'protocol_version' => '2',
                 'method' => 'GET',
                 'uri' => 'https://www.example.com/',
                 'headers' => [
-                    'Host' => [
-                        'www.example.com',
-                    ],
-                    'foo' => [
-                        'bar',
-                    ],
+                    'Host' => ['www.example.com'],
+                    'foo' => ['bar'],
                 ],
                 'body' => 'YmVlcg==',
             ]),
             $json
         );
 
-        self::assertSame('beer', (string)$request->getBody());
+        self::assertSame('beer', (string) $request->getBody());
     }
 }
