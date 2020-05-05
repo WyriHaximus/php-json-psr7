@@ -13,8 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4, "8.0", 8.1]
-        composer: [current, highest]
-    needs: lint
+        composer: [ lowest, current, highest ]
     runs-on: ubuntu-latest
     container:
       image: wyrihaximusnet/php:${{ matrix.php }}-nts-alpine-dev-root
@@ -39,7 +38,7 @@ jobs:
       fail-fast: false
       matrix:
         php: [7.4, "8.0", 8.1]
-        composer: [current, highest]
+        composer: [lowest, current, highest]
         qa: [lint, cs, stan, psalm, unit, infection, composer-require-checker, composer-unused, backward-compatibility-check]
     needs: composer-install
     runs-on: ubuntu-latest
