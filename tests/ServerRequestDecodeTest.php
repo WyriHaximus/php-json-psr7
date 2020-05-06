@@ -32,7 +32,7 @@ final class ServerRequestDecodeTest extends TestCase
             ],
             'attributes' => ['beer' => 'Dark Horizon 5'],
             'body' => 'YmVlcg==',
-            'parsed_body' => ['Dark Horizon 5'],
+            'parsed_body' => null,
             'files' => [
                 'root.water' => [
                     'filename' => 'water.bottle',
@@ -61,6 +61,7 @@ final class ServerRequestDecodeTest extends TestCase
         ], $request->getHeaders());
         self::assertSame('beer', (string) $request->getBody());
         self::assertSame('beer', (string) $request->getBody());
+        self::assertNull($request->getParsedBody());
         self::assertSame([
             'REQUEST_TIME' => $time,
             'QUERY_STRING' => 'foo=bar',

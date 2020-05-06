@@ -164,10 +164,10 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
 {
     $properties = [
         'stream' => 'string',
-        'size' => ['integer', 'null'],
+        'size' => ['integer', 'NULL'],
         'error' => 'integer',
-        'filename' => ['string', 'null'],
-        'media_type' => ['string', 'null'],
+        'filename' => ['string', 'NULL'],
+        'media_type' => ['string', 'NULL'],
     ];
 
     validate_array($json, $properties, NotAnEncodedUploadedFileException::class);
@@ -238,7 +238,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         'headers' => 'array',
         'attributes' => 'array',
         'body' => 'string',
-        'parsed_body' => ['array', 'object', 'null'],
+        'parsed_body' => ['array', 'object', 'NULL'],
         'files' => 'array',
     ];
 
