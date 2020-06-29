@@ -20,7 +20,6 @@ use Slim\Psr7\Headers as SlimHeaders;
 use Slim\Psr7\Request as SlimRequest;
 use Slim\Psr7\Response as SlimResponse;
 use Slim\Psr7\Uri as SlimUri;
-use WyriHaximus;
 use Zend\Diactoros\Request as ZendDiactorosRequest;
 use Zend\Diactoros\Response as ZendDiactorosResponse;
 use Zend\Diactoros\ServerRequest as ZendDiactorosServerRequest;

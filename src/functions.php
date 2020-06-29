@@ -2,6 +2,7 @@
 
 namespace WyriHaximus;
 
+use Ancarda\Psr7\StringStream\ReadOnlyStringStream;
 use Cake\Utility\Hash;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -11,7 +12,6 @@ use React\Http\Io\UploadedFile;
 use RingCentral\Psr7\Request;
 use RingCentral\Psr7\Response;
 use RingCentral\Psr7\ServerRequest;
-use function RingCentral\Psr7\stream_for;
 
 function psr7_response_json_encode(ResponseInterface $response): string
 {
@@ -56,7 +56,7 @@ function psr7_response_decode(array $json): ResponseInterface
     return new Response(
         $json['status_code'],
         $json['headers'],
-        \base64_decode($json['body'], true),
+        new ReadOnlyStringStream(\base64_decode($json['body'], true)),
         $json['protocol_version'],
         $json['reason_phrase']
     );
@@ -106,7 +106,7 @@ function psr7_request_decode(array $json): RequestInterface
         $json['method'],
         $json['uri'],
         $json['headers'],
-        \base64_decode($json['body'], true),
+        new ReadOnlyStringStream(\base64_decode($json['body'], true)),
         $json['protocol_version']
     );
 }
@@ -152,7 +152,7 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
     validate_array($json, $properties, NotAnEncodedUploadedFileException::class);
 
     return new UploadedFile(
-        stream_for(\base64_decode($json['stream'], true)),
+        new ReadOnlyStringStream(\base64_decode($json['stream'], true)),
         $json['size'],
         $json['error'],
         $json['filename'],
@@ -222,7 +222,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         $json['method'],
         $json['uri'],
         $json['headers'],
-        \base64_decode($json['body'], true),
+        new ReadOnlyStringStream(\base64_decode($json['body'], true)),
         $json['protocol_version'],
         $json['server_params']
     ))->
