@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus;
 
@@ -12,6 +14,7 @@ use React\Http\Io\UploadedFile;
 use RingCentral\Psr7\Request;
 use RingCentral\Psr7\Response;
 use RingCentral\Psr7\ServerRequest;
+
 use function base64_encode;
 use function count;
 use function Safe\base64_decode;
