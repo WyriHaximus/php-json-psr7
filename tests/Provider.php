@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
@@ -26,9 +28,11 @@ use Slim\Psr7\Headers as SlimHeaders;
 use Slim\Psr7\Request as SlimRequest;
 use Slim\Psr7\Response as SlimResponse;
 use Slim\Psr7\Uri as SlimUri;
+
 use function GuzzleHttp\Psr7\stream_for as guzzle_stream_for;
 use function RingCentral\Psr7\stream_for as ring_central_stream_for;
 use function time;
+
 use const UPLOAD_ERR_OK;
 
 final class Provider

@@ -23,11 +23,11 @@
         "guzzlehttp/psr7": "^1.6",
         "nyholm/psr7": "^1.2",
         "slim/psr7": "^0.5.0 || ^0.6 || ^1.0",
-        "wyrihaximus/test-utilities": "^2.3"
+        "wyrihaximus/test-utilities": "^2.5"
     },
     "config": {
         "platform": {
-            "php": "7.4"
+            "php": "7.4.7"
         },
         "sort-packages": true
     },

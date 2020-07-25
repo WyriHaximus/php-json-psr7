@@ -1,8 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace WyriHaximus;
 
 use Exception;
+
 use function Safe\json_encode;
 
 final class NotAnEncodedResponseException extends Exception
