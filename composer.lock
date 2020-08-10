@@ -48,16 +48,16 @@
         },
         {
             "name": "cakephp/core",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "d988765de7ff5f7c3588fb236001712e4bd8fe2e"
+                "reference": "66a9a275d2608265d4cf7cf34edabd601c183441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/d988765de7ff5f7c3588fb236001712e4bd8fe2e",
-                "reference": "d988765de7ff5f7c3588fb236001712e4bd8fe2e",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/66a9a275d2608265d4cf7cf34edabd601c183441",
+                "reference": "66a9a275d2608265d4cf7cf34edabd601c183441",
                 "shasum": ""
             },
             "require": {
@@ -94,20 +94,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-06-14T20:03:17+00:00"
+            "time": "2020-07-31T16:15:46+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.1.1",
+            "version": "4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "263d25a8b2f6d054a9164ba49f58dbdd1a011513"
+                "reference": "d67455631d4bef771acb5521914d6d44fe46bed6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/263d25a8b2f6d054a9164ba49f58dbdd1a011513",
-                "reference": "263d25a8b2f6d054a9164ba49f58dbdd1a011513",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/d67455631d4bef771acb5521914d6d44fe46bed6",
+                "reference": "d67455631d4bef771acb5521914d6d44fe46bed6",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +147,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-06-22T08:33:27+00:00"
+            "time": "2020-08-08T09:03:06+00:00"
         },
         {
             "name": "evenement/evenement",
