@@ -48,16 +48,16 @@
         },
         {
             "name": "cakephp/core",
-            "version": "4.1.2",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "66a9a275d2608265d4cf7cf34edabd601c183441"
+                "reference": "c7e88f1cd6dfe17065e71f1af305d415f155e97e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/66a9a275d2608265d4cf7cf34edabd601c183441",
-                "reference": "66a9a275d2608265d4cf7cf34edabd601c183441",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/c7e88f1cd6dfe17065e71f1af305d415f155e97e",
+                "reference": "c7e88f1cd6dfe17065e71f1af305d415f155e97e",
                 "shasum": ""
             },
             "require": {
@@ -94,20 +94,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-07-31T16:15:46+00:00"
+            "time": "2020-08-13T23:43:58+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.1.2",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "d67455631d4bef771acb5521914d6d44fe46bed6"
+                "reference": "c65a5a169077c561b6e850e6d0ee85d9a54b6f5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/d67455631d4bef771acb5521914d6d44fe46bed6",
-                "reference": "d67455631d4bef771acb5521914d6d44fe46bed6",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/c65a5a169077c561b6e850e6d0ee85d9a54b6f5a",
+                "reference": "c65a5a169077c561b6e850e6d0ee85d9a54b6f5a",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +147,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-08-08T09:03:06+00:00"
+            "time": "2020-08-12T08:25:29+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -4967,6 +4967,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-06-27T06:36:25+00:00"
         },
         {
