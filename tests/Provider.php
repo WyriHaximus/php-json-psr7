@@ -7,6 +7,7 @@ namespace WyriHaximus\Tests;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use GuzzleHttp\Psr7\ServerRequest as GuzzleServerRequest;
+use GuzzleHttp\Psr7\Utils;
 use Laminas\Diactoros\Request as LaminasDiactorosRequest;
 use Laminas\Diactoros\Response as LaminasDiactorosResponse;
 use Laminas\Diactoros\ServerRequest as LaminasDiactorosServerRequest;
@@ -29,7 +30,6 @@ use Slim\Psr7\Request as SlimRequest;
 use Slim\Psr7\Response as SlimResponse;
 use Slim\Psr7\Uri as SlimUri;
 
-use function GuzzleHttp\Psr7\stream_for as guzzle_stream_for;
 use function RingCentral\Psr7\stream_for as ring_central_stream_for;
 use function time;
 
@@ -271,7 +271,7 @@ final class Provider
         ];
 
         yield 'guzzle' => [
-            new UploadedFile(guzzle_stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            new UploadedFile(Utils::streamFor('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
 
         yield 'nyholm' => [
@@ -297,7 +297,7 @@ final class Provider
         ];
 
         yield 'guzzle' => [
-            new UploadedFile(guzzle_stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            new UploadedFile(Utils::streamFor('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
 
         yield 'nyholm' => [
