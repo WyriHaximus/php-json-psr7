@@ -42,16 +42,16 @@
         },
         {
             "name": "cakephp/core",
-            "version": "4.1.5",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/core.git",
-                "reference": "c7e88f1cd6dfe17065e71f1af305d415f155e97e"
+                "reference": "635a924ff9ddc2e2f81e9073643c59e7ed6f7f55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/core/zipball/c7e88f1cd6dfe17065e71f1af305d415f155e97e",
-                "reference": "c7e88f1cd6dfe17065e71f1af305d415f155e97e",
+                "url": "https://api.github.com/repos/cakephp/core/zipball/635a924ff9ddc2e2f81e9073643c59e7ed6f7f55",
+                "reference": "635a924ff9ddc2e2f81e9073643c59e7ed6f7f55",
                 "shasum": ""
             },
             "require": {
@@ -60,7 +60,8 @@
             },
             "suggest": {
                 "cakephp/cache": "To use Configure::store() and restore().",
-                "cakephp/event": "To use PluginApplicationInterface or plugin applications."
+                "cakephp/event": "To use PluginApplicationInterface or plugin applications.",
+                "league/container": "To use Container and ServiceProvider classes"
             },
             "type": "library",
             "autoload": {
@@ -88,20 +89,20 @@
                 "core",
                 "framework"
             ],
-            "time": "2020-08-13T23:43:58+00:00"
+            "time": "2020-12-03T14:30:58+00:00"
         },
         {
             "name": "cakephp/utility",
-            "version": "4.1.5",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/utility.git",
-                "reference": "c65a5a169077c561b6e850e6d0ee85d9a54b6f5a"
+                "reference": "d8e667953f13f399fea08a7e204b9e0f022d5d3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/utility/zipball/c65a5a169077c561b6e850e6d0ee85d9a54b6f5a",
-                "reference": "c65a5a169077c561b6e850e6d0ee85d9a54b6f5a",
+                "url": "https://api.github.com/repos/cakephp/utility/zipball/d8e667953f13f399fea08a7e204b9e0f022d5d3c",
+                "reference": "d8e667953f13f399fea08a7e204b9e0f022d5d3c",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +142,7 @@
                 "string",
                 "utility"
             ],
-            "time": "2020-08-12T08:25:29+00:00"
+            "time": "2020-12-04T14:13:14+00:00"
         },
         {
             "name": "evenement/evenement",
