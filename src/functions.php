@@ -175,6 +175,9 @@ function psr7_uploaded_file_decode(array $json): UploadedFileInterface
 
     validate_array($json, $properties, NotAnEncodedUploadedFileException::class);
 
+    /**
+     * @psalm-suppress InternalMethod
+     */
     return new UploadedFile(
         new ReadOnlyStringStream(base64_decode($json['stream'], true)),
         $json['size'],
