@@ -1,9 +1,0 @@
-parameters:
-	ignoreErrors:
-		- '#Parameter \#4 \$body of class RingCentral\\Psr7\\ServerRequest constructor expects resource\|RingCentral\\Psr7\\StreamInterface\|string\|null, Ancarda\\Psr7\\StringStream\\ReadOnlyStringStream given.#'
-	ergebnis:
-		classesAllowedToBeExtended:
-			- Exception
-
-includes:
-	- vendor/wyrihaximus/test-utilities/rules.neon
