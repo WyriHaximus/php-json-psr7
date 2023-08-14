@@ -13,7 +13,7 @@
         "ancarda/psr7-string-stream": "^1.3",
         "cakephp/utility": "^3.7 || ^4.0",
         "laminas/laminas-diactoros": "^2.3",
-        "psr/http-message": "^1.0",
+        "psr/http-message": "^1.0 || ^2.0",
         "react/http": "^1.3",
         "ringcentral/psr7": "^1.2.2",
         "thecodingmachine/safe": "^2 || ^1.1",
