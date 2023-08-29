@@ -6,14 +6,14 @@ namespace WyriHaximus;
 
 use Ancarda\Psr7\StringStream\ReadOnlyStringStream;
 use Cake\Utility\Hash;
+use Nyholm\Psr7\Request;
+use Nyholm\Psr7\Response;
+use Nyholm\Psr7\ServerRequest;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use React\Http\Io\UploadedFile;
-use RingCentral\Psr7\Request;
-use RingCentral\Psr7\Response;
-use RingCentral\Psr7\ServerRequest;
 
 use function base64_encode;
 use function count;
@@ -28,7 +28,7 @@ function psr7_response_json_encode(ResponseInterface $response): string
 }
 
 /**
- * @return array{protocol_version: string, status_code: int, reason_phrase: string, headers: array, body: string}
+ * @return array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<array-key, array<array-key, mixed>>, body: string}
  */
 function psr7_response_encode(ResponseInterface $response): array
 {
@@ -51,7 +51,7 @@ function psr7_response_json_decode(string $json): ResponseInterface
 }
 
 /**
- * @param array{protocol_version: string, status_code: int, reason_phrase: string, headers: array, body: string} $json
+ * @param array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<array-key, array<array-key, mixed>>, body: string} $json
  *
  * @throws NotAnEncodedResponseException
  */
@@ -82,7 +82,7 @@ function psr7_request_json_encode(RequestInterface $request): string
 }
 
 /**
- * @return array{protocol_version: string, method: string, uri: string, headers: array, body: string}
+ * @return array{protocol_version: string, method: string, uri: string, headers: array<array-key, array<array-key, mixed>>, body: string}
  */
 function psr7_request_encode(RequestInterface $request): array
 {
@@ -105,7 +105,7 @@ function psr7_request_json_decode(string $json): RequestInterface
 }
 
 /**
- * @param array{protocol_version: string, method: string, uri: string, headers: array, body: string} $json
+ * @param array{protocol_version: string, method: string, uri: string, headers: array<array-key, array<array-key, mixed>>, body: string} $json
  *
  * @throws NotAnEncodedRequestException
  */
@@ -193,7 +193,7 @@ function psr7_server_request_json_encode(ServerRequestInterface $request): strin
 }
 
 /**
- * @return array{protocol_version: string, method: string, uri: string, query_params: array, cookie_params: array, server_params: array, headers: array, attributes: array, body: string, parsed_body: (array|object|null), files: array}
+ * @return array{attributes: array<array-key, mixed>, body: string, cookie_params: array<array-key, mixed>, files: array<array-key, (array{error: int, filename: (null|string), media_type: (null|string), size: (int|null), stream: string}|mixed)>, headers: array<array-key, array<mixed>>, method: string, parsed_body: (array<array-key, mixed>|object|null), protocol_version: string, query_params: array<array-key, mixed>, server_params: array<array-key, mixed>, uri: string}
  */
 function psr7_server_request_encode(ServerRequestInterface $request): array
 {
@@ -227,7 +227,7 @@ function psr7_server_request_json_decode(string $json): ServerRequestInterface
 }
 
 /**
- * @param array{protocol_version: string, method: string, uri: string, query_params: array, cookie_params: array, server_params: array, headers: array, attributes: array, body: string, parsed_body: (array|object|null), files: array} $json
+ * @param array{attributes: array<array-key, mixed>, body: string, cookie_params: array<array-key, mixed>, files: array<array-key, (array{error: int, filename: (null|string), media_type: (null|string), size: (int|null), stream: string}|mixed)>, headers: array<array-key, array<mixed>>, method: string, parsed_body: (array<array-key, mixed>|object|null), protocol_version: string, query_params: array<array-key, mixed>, server_params: array<array-key, mixed>, uri: string} $json
  *
  * @throws NotAnEncodedServerRequestException
  * @throws NotAnEncodedUploadedFileException
@@ -269,6 +269,7 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
     }
 
     if (count($json['files']) > 0) {
+        /** @var array{stream: string, size: int, error: int, filename: string, media_type: string} $file */
         foreach ($json['files'] as $key => $file) {
             $json['files'][$key] = psr7_uploaded_file_decode($file);
         }
@@ -281,9 +282,9 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
 }
 
 /**
- * @param array<array<string>> $headers
+ * @param array<array<string, mixed>> $headers
  *
- * @return array<array<string>>
+ * @return array<array<string, mixed>>
  */
 function sort_headers(array $headers): array
 {
