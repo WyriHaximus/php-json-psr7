@@ -23,7 +23,7 @@
         "guzzlehttp/psr7": "^1.6 || ^2.0",
         "nyholm/psr7": "^1.2",
         "slim/psr7": "^0.5.0 || ^0.6 || ^1.0",
-        "wyrihaximus/test-utilities": "^5 || ^3.7.6"
+        "wyrihaximus/test-utilities": "^5 || ^3.7.6 || ^6.0.0"
     },
     "autoload": {
         "psr-4": {
