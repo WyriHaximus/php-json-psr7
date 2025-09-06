@@ -1,2 +1,14 @@
-includes:
-	- ../../vendor/wyrihaximus/test-utilities/rules.neon
+parameters:
+	ergebnis:
+		noExtends:
+			classesAllowedToBeExtended:
+				- Exception
+	ignoreErrors:
+		-
+			message: '#Call to method __construct\(\) of internal class React\\Http\\Io\\UploadedFile from outside its root namespace React.#'
+		-
+			message: '#Instantiation of internal class React\\Http\\Io\\UploadedFile.#'
+		-   # This is a non-issue due to a bug in RingCentral/PSR7
+			message: '#Parameter \#4 \$body of class RingCentral\\Psr7\\ServerRequest constructor expects resource\|RingCentral\\Psr7\\StreamInterface\|string\|null, Ancarda\\Psr7\\StringStream\\ReadOnlyStringStream given.#'
+		-
+			identifier: shipmonk.checkedExceptionInYieldingMethod

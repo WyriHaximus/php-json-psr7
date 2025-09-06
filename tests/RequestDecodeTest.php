@@ -7,12 +7,10 @@ namespace WyriHaximus\Tests;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
-/**
- * @internal
- */
 final class RequestDecodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /** @test */
+    public function success(): void
     {
         $json = [
             'protocol_version' => '2',
@@ -37,7 +35,8 @@ final class RequestDecodeTest extends TestCase
         self::assertSame('beer', (string) $request->getBody());
     }
 
-    public function testFailure(): void
+    /** @test */
+    public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedRequestException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 request, field "protocol_version" is missing');

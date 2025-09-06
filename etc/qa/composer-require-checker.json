@@ -3,7 +3,9 @@
     "null", "true", "false",
     "static", "self", "parent",
     "array", "string", "int", "float", "bool", "iterable", "callable", "void", "object",
-    "WyriHaximus\\Constants\\Boolean\\TRUE_", "WyriHaximus\\Constants\\Boolean\\FALSE_"
+    "psr7_request_decode", "psr7_request_encode", "psr7_response_decode", "psr7_response_encode",
+    "psr7_server_request_decode", "psr7_server_request_encode", "psr7_uploaded_file_decode",
+    "psr7_uploaded_file_encode", "sort_headers", "validate_array"
   ],
   "php-core-extensions" : [
     "Core",
