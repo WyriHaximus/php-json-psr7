@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use WyriHaximus;
 
 final class ResponseEncodeTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider \WyriHaximus\Tests\Provider::response
-     */
+    #[Test]
+    #[DataProviderExternal(Provider::class, 'response')]
     public function success(ResponseInterface $response): void
     {
         $json = WyriHaximus\psr7_response_encode($response);

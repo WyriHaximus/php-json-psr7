@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
 final class ResponseDecodeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function success(): void
     {
         $json = [
@@ -33,7 +34,7 @@ final class ResponseDecodeTest extends TestCase
         self::assertSame('beer', (string) $response->getBody());
     }
 
-    /** @test */
+    #[Test]
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedResponseException::class);
