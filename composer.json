@@ -1,62 +1,66 @@
 {
-    "name": "wyrihaximus/json-psr7",
-    "description": "JSON encode and decode PSR-7 requests and responses",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Cees-Jan Kiewiet",
-            "email": "ceesjank@gmail.com"
-        }
-    ],
-    "require": {
-        "php": "^8 || ^7.4",
-        "ancarda/psr7-string-stream": "^1.3",
-        "cakephp/utility": "^3.7 || ^4.0",
-        "laminas/laminas-diactoros": "^2.3",
-        "psr/http-message": "^1.0 || ^2.0",
-        "react/http": "^1.3",
-        "ringcentral/psr7": "^1.2.2",
-        "thecodingmachine/safe": "^2 || ^1.1",
-        "wyrihaximus/json-utilities": "^1.2"
-    },
-    "require-dev": {
-        "guzzlehttp/psr7": "^1.6 || ^2.0",
-        "nyholm/psr7": "^1.2",
-        "slim/psr7": "^0.5.0 || ^0.6 || ^1.0",
-        "wyrihaximus/test-utilities": "^5 || ^3.7.6"
-    },
-    "autoload": {
-        "psr-4": {
-            "WyriHaximus\\": "src/"
-        },
-        "files": [
-            "src/functions_include.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "WyriHaximus\\Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "infection/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "icanhazstring/composer-unused": true,
-            "ergebnis/composer-normalize": true
-        },
-        "platform": {
-            "php": "7.4.7"
-        },
-        "sort-packages": true
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "composer normalize"
-        ],
-        "post-update-cmd": [
-            "composer normalize"
-        ]
+  "name": "wyrihaximus/json-psr7",
+  "description": "JSON encode and decode PSR-7 requests and responses",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cees-Jan Kiewiet",
+      "email": "ceesjank@gmail.com"
     }
+  ],
+  "require": {
+    "php": "^8.4",
+    "ext-json": "^8.4",
+    "ancarda/psr7-string-stream": "^1.3",
+    "cakephp/utility": "^3.7 || ^4.0",
+    "psr/http-message": "^1.0 || ^2.0",
+    "react/http": "^1.3",
+    "ringcentral/psr7": "^1.2.2",
+    "wyrihaximus/json-utilities": "^1.4"
+  },
+  "require-dev": {
+    "guzzlehttp/psr7": "^1.6 || ^2.0",
+    "laminas/laminas-diactoros": "^3.6",
+    "nyholm/psr7": "^1.2",
+    "slim/psr7": "^0.5.0 || ^0.6 || ^1.0",
+    "wyrihaximus/makefiles": "^0.6",
+    "wyrihaximus/test-utilities": "^8.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WyriHaximus\\": "src/"
+    },
+    "files": [
+      "src/functions_include.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WyriHaximus\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/package-versions-deprecated": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true,
+      "ergebnis/composer-normalize": true,
+      "icanhazstring/composer-unused": true,
+      "infection/extension-installer": true,
+      "phpstan/extension-installer": true,
+      "wyrihaximus/makefiles": true,
+      "wyrihaximus/test-utilities": true
+    },
+    "platform": {
+      "php": "8.4.13"
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "make on-install-or-update || true"
+    ],
+    "post-update-cmd": [
+      "make on-install-or-update || true"
+    ]
+  }
 }

@@ -12,12 +12,10 @@ use function time;
 
 use const UPLOAD_ERR_OK;
 
-/**
- * @internal
- */
 final class ServerRequestDecodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /** @test */
+    public function success(): void
     {
         $time = time();
         $json = [
@@ -74,10 +72,12 @@ final class ServerRequestDecodeTest extends TestCase
         self::assertSame(['remember_me' => 'yes'], $request->getCookieParams());
         self::assertSame(['beer' => 'Dark Horizon 5'], $request->getAttributes());
 
+        /** @var array<string, array<string, UploadedFileInterface>> $files */
         $files = $request->getUploadedFiles();
+        self::assertArrayHasKey('root', $files);
         self::assertCount(2, $files['root']);
 
-        self::assertInstanceOf(UploadedFileInterface::class, $files['root']['water']);
+        self::assertArrayHasKey('water', $files['root']);
         self::assertSame(5, $files['root']['water']->getSize());
         self::assertSame('water.bottle', $files['root']['water']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['water']->getClientMediaType());
@@ -85,7 +85,7 @@ final class ServerRequestDecodeTest extends TestCase
         self::assertSame('Water', (string) $files['root']['water']->getStream());
         self::assertSame(UPLOAD_ERR_OK, $files['root']['water']->getError());
 
-        self::assertInstanceOf(UploadedFileInterface::class, $files['root']['beer']);
+        self::assertArrayHasKey('beer', $files['root']);
         self::assertSame(14, $files['root']['beer']->getSize());
         self::assertSame('beer.bottle', $files['root']['beer']->getClientFilename());
         self::assertSame('earth/liquid', $files['root']['beer']->getClientMediaType());
@@ -94,7 +94,8 @@ final class ServerRequestDecodeTest extends TestCase
         self::assertSame(UPLOAD_ERR_OK, $files['root']['beer']->getError());
     }
 
-    public function testFailure(): void
+    /** @test */
+    public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedServerRequestException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 server request, field "protocol_version" is missing');

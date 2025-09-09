@@ -37,10 +37,8 @@ use const UPLOAD_ERR_OK;
 
 final class Provider
 {
-    /**
-     * @return iterable<array<RequestInterface>>
-     */
-    public function request(): iterable
+    /** @return iterable<array<RequestInterface>> */
+    public static function request(): iterable
     {
         yield 'ringcentral' => [
             new RinCentralRequest(
@@ -48,7 +46,7 @@ final class Provider
                 'https://www.example.com/',
                 ['foo' => 'bar'],
                 'beer',
-                '2'
+                '2',
             ),
         ];
 
@@ -58,7 +56,7 @@ final class Provider
                 'https://www.example.com/',
                 ['foo' => 'bar'],
                 'beer',
-                '2'
+                '2',
             ),
         ];
 
@@ -68,35 +66,33 @@ final class Provider
                 'https://www.example.com/',
                 ['foo' => 'bar'],
                 'beer',
-                '2'
+                '2',
             ),
         ];
 
         yield 'laminas-diactoros' => [
-            (new LaminasDiactorosRequest(
+            new LaminasDiactorosRequest(
                 'https://www.example.com/',
                 'GET',
-                (new LaminasDiactorosStreamFactory())->createStream('beer'),
-                ['foo' => 'bar']
-            ))->withProtocolVersion('2'),
+                new LaminasDiactorosStreamFactory()->createStream('beer'),
+                ['foo' => 'bar'],
+            )->withProtocolVersion('2'),
         ];
 
         yield 'slim' => [
-            (new SlimRequest(
+            new SlimRequest(
                 'GET',
                 new SlimUri('https', 'www.example.com'),
                 new SlimHeaders(['foo' => 'bar']),
                 [],
                 [],
-                (new SlimStreamFactory())->createStream('beer')
-            ))->withProtocolVersion('2'),
+                new SlimStreamFactory()->createStream('beer'),
+            )->withProtocolVersion('2'),
         ];
     }
 
-    /**
-     * @return iterable<array<ResponseInterface>>
-     */
-    public function response(): iterable
+    /** @return iterable<array<ResponseInterface>> */
+    public static function response(): iterable
     {
         yield 'ringcentral' => [
             new RinCentralResponse(
@@ -104,7 +100,7 @@ final class Provider
                 ['foo' => 'bar'],
                 'beer',
                 '2',
-                'OK'
+                'OK',
             ),
         ];
 
@@ -114,7 +110,7 @@ final class Provider
                 ['foo' => 'bar'],
                 'beer',
                 '2',
-                'OK'
+                'OK',
             ),
         ];
 
@@ -124,36 +120,34 @@ final class Provider
                 ['foo' => 'bar'],
                 'beer',
                 '2',
-                'OK'
+                'OK',
             ),
         ];
 
         yield 'laminas-diactoros' => [
-            (new LaminasDiactorosResponse(
-                (new LaminasDiactorosStreamFactory())->createStream('beer'),
+            new LaminasDiactorosResponse(
+                new LaminasDiactorosStreamFactory()->createStream('beer'),
                 200,
-                ['foo' => 'bar']
-            ))->withProtocolVersion('2'),
+                ['foo' => 'bar'],
+            )->withProtocolVersion('2'),
         ];
 
         yield 'slim' => [
-            (new SlimResponse(
+            new SlimResponse(
                 200,
                 new SlimHeaders(['foo' => 'bar']),
-                (new SlimStreamFactory())->createStream('beer')
-            ))->withProtocolVersion('2'),
+                new SlimStreamFactory()->createStream('beer'),
+            )->withProtocolVersion('2'),
         ];
     }
 
-    /**
-     * @return iterable<array<ServerRequestInterface|int|UploadedFileInterface>>
-     */
-    public function serverRequest(): iterable
+    /** @return iterable<array<ServerRequestInterface|int|UploadedFileInterface>> */
+    public static function serverRequest(): iterable
     {
-        foreach ($this->uploadedFileWaterBottle() as $wbk => $waterBottle) {
-            $waterBottle = $waterBottle[0];
-            foreach ($this->uploadedFileBeerBottle() as $bbk => $beerBottle) {
-                $beerBottle = $beerBottle[0];
+        foreach (self::uploadedFileWaterBottle() as $wbk => $waterBottles) {
+            $waterBottle = $waterBottles['bottle'];
+            foreach (self::uploadedFileBeerBottle() as $bbk => $beerBottles) {
+                $beerBottle = $beerBottles['beerBottle'];
                 $files      = [
                     'root' => [
                         'water' => $waterBottle,
@@ -162,154 +156,162 @@ final class Provider
                 ];
                 $time       = time();
 
-                $request = (new RinCentralServerRequest(
+                yield 'ringcentral_w_' . $wbk . '_b_' . $bbk => [
+                    new RinCentralServerRequest(
+                        'GET',
+                        'https://www.example.com/?foo=bar',
+                        ['foo' => 'bar'],
+                        'beer',
+                        '2',
+                        [
+                            'REQUEST_TIME' => $time,
+                            'QUERY_STRING' => 'foo=bar',
+                        ],
+                    )->
+                        withAttribute('beer', 'Dark Horizon 5')->
+                        withParsedBody(['Dark Horizon 5'])->
+                        withUploadedFiles($files)->
+                        withQueryParams(['foo' => 'bar'])->
+                        withCookieParams(['remember_me' => 'yes']),
+                    $time,
+                    $waterBottle,
+                    $beerBottle,
+                ];
+
+                yield 'guzzle_w_' . $wbk . '_b_' . $bbk => [
+                    new GuzzleServerRequest(
+                        'GET',
+                        'https://www.example.com/?foo=bar',
+                        ['foo' => 'bar'],
+                        'beer',
+                        '2',
+                        [
+                            'REQUEST_TIME' => $time,
+                            'QUERY_STRING' => 'foo=bar',
+                        ],
+                    )->
+                        withAttribute('beer', 'Dark Horizon 5')->
+                        withParsedBody(['Dark Horizon 5'])->
+                        withUploadedFiles($files)->
+                        withQueryParams(['foo' => 'bar'])->
+                        withCookieParams(['remember_me' => 'yes']),
+                    $time,
+                    $waterBottle,
+                    $beerBottle,
+                ];
+
+                $request = new NyholmServerRequest(
                     'GET',
                     'https://www.example.com/?foo=bar',
                     ['foo' => 'bar'],
                     'beer',
                     '2',
-                    [
-                        'REQUEST_TIME' => $time,
-                        'QUERY_STRING' => 'foo=bar',
-                    ]
-                ))->
-                    withAttribute('beer', 'Dark Horizon 5')->
-                    withParsedBody(['Dark Horizon 5'])->
-                    withUploadedFiles($files)->
-                    withQueryParams(['foo' => 'bar'])->
-                    withCookieParams(['remember_me' => 'yes']);
-
-                yield 'ringcentral_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
-
-                $request = (new GuzzleServerRequest(
-                    'GET',
-                    'https://www.example.com/?foo=bar',
-                    ['foo' => 'bar'],
-                    'beer',
-                    '2',
-                    [
-                        'REQUEST_TIME' => $time,
-                        'QUERY_STRING' => 'foo=bar',
-                    ]
-                ))->
-                    withAttribute('beer', 'Dark Horizon 5')->
-                    withParsedBody(['Dark Horizon 5'])->
-                    withUploadedFiles($files)->
-                    withQueryParams(['foo' => 'bar'])->
-                    withCookieParams(['remember_me' => 'yes']);
-
-                yield 'guzzle_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
-
-                $request = (new NyholmServerRequest(
-                    'GET',
-                    'https://www.example.com/?foo=bar',
-                    ['foo' => 'bar'],
-                    'beer',
-                    '2',
-                    [
-                        'REQUEST_TIME' => $time,
-                        'QUERY_STRING' => 'foo=bar',
-                    ]
-                ))->
-                    withAttribute('beer', 'Dark Horizon 5')->
-                    withParsedBody(['Dark Horizon 5'])->
-                    withUploadedFiles($files)->
-                    withQueryParams(['foo' => 'bar'])->
-                    withCookieParams(['remember_me' => 'yes']);
-
-                yield 'nyholm_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
-
-                $request = (new LaminasDiactorosServerRequest(
                     [
                         'REQUEST_TIME' => $time,
                         'QUERY_STRING' => 'foo=bar',
                     ],
-                    $files,
-                    'https://www.example.com/?foo=bar',
-                    'GET',
-                    (new LaminasDiactorosStreamFactory())->createStream('beer'),
-                    ['foo' => 'bar']
-                ))->
+                )->
                     withAttribute('beer', 'Dark Horizon 5')->
                     withParsedBody(['Dark Horizon 5'])->
+                    withUploadedFiles($files)->
                     withQueryParams(['foo' => 'bar'])->
-                    withCookieParams(['remember_me' => 'yes'])->
-                    withProtocolVersion('2');
+                    withCookieParams(['remember_me' => 'yes']);
+
+                yield 'nyholm_w_' . $wbk . '_b_' . $bbk => [
+                    new LaminasDiactorosServerRequest(
+                        [
+                            'REQUEST_TIME' => $time,
+                            'QUERY_STRING' => 'foo=bar',
+                        ],
+                        $files,
+                        'https://www.example.com/?foo=bar',
+                        'GET',
+                        new LaminasDiactorosStreamFactory()->createStream('beer'),
+                        ['foo' => 'bar'],
+                    )->
+                        withAttribute('beer', 'Dark Horizon 5')->
+                        withParsedBody(['Dark Horizon 5'])->
+                        withQueryParams(['foo' => 'bar'])->
+                        withCookieParams(['remember_me' => 'yes'])->
+                        withProtocolVersion('2'),
+                    $time,
+                    $waterBottle,
+                    $beerBottle,
+                ];
 
                 yield 'laminas-diactoros_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
 
-                $request = (new SlimRequest(
-                    'GET',
-                    new SlimUri('https', 'www.example.com', null, '/', 'foo=bar'),
-                    new SlimHeaders(['foo' => 'bar']),
-                    [],
-                    [
-                        'REQUEST_TIME' => $time,
-                        'QUERY_STRING' => 'foo=bar',
-                    ],
-                    (new SlimStreamFactory())->createStream('beer'),
-                    $files
-                ))->
-                    withAttribute('beer', 'Dark Horizon 5')->
-                    withParsedBody(['Dark Horizon 5'])->
-                    withQueryParams(['foo' => 'bar'])->
-                    withCookieParams(['remember_me' => 'yes'])->
-                    withProtocolVersion('2');
-
-                yield 'slim_w_' . $wbk . '_b_' . $bbk => [$request, $time, $waterBottle, $beerBottle];
+                yield 'slim_w_' . $wbk . '_b_' . $bbk => [
+                    new SlimRequest(
+                        'GET',
+                        new SlimUri('https', 'www.example.com', null, '/', 'foo=bar'),
+                        new SlimHeaders(['foo' => 'bar']),
+                        [],
+                        [
+                            'REQUEST_TIME' => $time,
+                            'QUERY_STRING' => 'foo=bar',
+                        ],
+                        new SlimStreamFactory()->createStream('beer'),
+                        $files,
+                    )->
+                        withAttribute('beer', 'Dark Horizon 5')->
+                        withParsedBody(['Dark Horizon 5'])->
+                        withQueryParams(['foo' => 'bar'])->
+                        withCookieParams(['remember_me' => 'yes'])->
+                        withProtocolVersion('2'),
+                    $time,
+                    $waterBottle,
+                    $beerBottle,
+                ];
             }
         }
     }
 
-    /**
-     * @return iterable<array<UploadedFileInterface>>
-     */
-    public function uploadedFileWaterBottle(): iterable
+    /** @return iterable<string, array<string, UploadedFileInterface>> */
+    public static function uploadedFileWaterBottle(): iterable
     {
         yield 'ringcentral' => [
-            new UploadedFile(ring_central_stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            'bottle' => new UploadedFile(ring_central_stream_for('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
 
         yield 'guzzle' => [
-            new UploadedFile(Utils::streamFor('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            'bottle' => new UploadedFile(Utils::streamFor('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
 
         yield 'nyholm' => [
-            new UploadedFile(NyholmStream::create('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            'bottle' => new UploadedFile(NyholmStream::create('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
 
         yield 'laminas-diactoros' => [
-            new UploadedFile((new LaminasDiactorosStreamFactory())->createStream('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            'bottle' => new UploadedFile(new LaminasDiactorosStreamFactory()->createStream('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
 
         yield 'slim' => [
-            new UploadedFile((new SlimStreamFactory())->createStream('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
+            'bottle' => new UploadedFile(new SlimStreamFactory()->createStream('Water'), 5, UPLOAD_ERR_OK, 'water.bottle', 'earth/liquid'),
         ];
     }
 
-    /**
-     * @return iterable<array<UploadedFileInterface>>
-     */
-    public function uploadedFileBeerBottle(): iterable
+    /** @return iterable<string, array<string, UploadedFileInterface>> */
+    public static function uploadedFileBeerBottle(): iterable
     {
         yield 'ringcentral' => [
-            new UploadedFile(ring_central_stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            'beerBottle' => new UploadedFile(ring_central_stream_for('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
 
         yield 'guzzle' => [
-            new UploadedFile(Utils::streamFor('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            'beerBottle' => new UploadedFile(Utils::streamFor('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
 
         yield 'nyholm' => [
-            new UploadedFile(NyholmStream::create('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            'beerBottle' => new UploadedFile(NyholmStream::create('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
 
         yield 'laminas-diactoros' => [
-            new UploadedFile((new LaminasDiactorosStreamFactory())->createStream('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            'beerBottle' => new UploadedFile(new LaminasDiactorosStreamFactory()->createStream('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
 
         yield 'slim' => [
-            new UploadedFile((new SlimStreamFactory())->createStream('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
+            'beerBottle' => new UploadedFile(new SlimStreamFactory()->createStream('Dark Horizon 5'), 14, UPLOAD_ERR_OK, 'beer.bottle', 'earth/liquid'),
         ];
     }
 }

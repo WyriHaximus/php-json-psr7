@@ -8,26 +8,24 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
 
-/**
- * @internal
- */
 final class UploadedFileEncodeTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider \WyriHaximus\Tests\Provider::uploadedFileBeerBottle
      */
-    public function testSuccess(UploadedFileInterface $beerBottle): void
+    public function success(UploadedFileInterface $beerBottle): void
     {
         $json = WyriHaximus\psr7_uploaded_file_encode($beerBottle);
         self::assertSame(
             [
+                'stream' => 'RGFyayBIb3Jpem9uIDU=',
+                'size' => 14,
+                'error' => 0,
                 'filename' => 'beer.bottle',
                 'media_type' => 'earth/liquid',
-                'error' => 0,
-                'size' => 14,
-                'stream' => 'RGFyayBIb3Jpem9uIDU=',
             ],
-            $json
+            $json,
         );
 
         self::assertSame('Dark Horizon 5', (string) $beerBottle->getStream());

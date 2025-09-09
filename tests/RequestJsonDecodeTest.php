@@ -9,12 +9,10 @@ use WyriHaximus;
 
 use function Safe\json_encode;
 
-/**
- * @internal
- */
 final class RequestJsonDecodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /** @test */
+    public function success(): void
     {
         $json = json_encode([
             'protocol_version' => '2',
@@ -39,7 +37,8 @@ final class RequestJsonDecodeTest extends TestCase
         self::assertSame('beer', (string) $request->getBody());
     }
 
-    public function testFailure(): void
+    /** @test */
+    public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedRequestException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 request, field "protocol_version" is missing');

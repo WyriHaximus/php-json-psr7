@@ -9,12 +9,10 @@ use WyriHaximus;
 
 use function Safe\json_encode;
 
-/**
- * @internal
- */
 final class UploadedFileJsonDecodeTest extends TestCase
 {
-    public function testSuccess(): void
+    /** @test */
+    public function success(): void
     {
         $json = json_encode([
             'filename' => 'beer.bottle',
@@ -33,7 +31,8 @@ final class UploadedFileJsonDecodeTest extends TestCase
         self::assertSame('Dark Horizon 5', (string) $file->getStream());
     }
 
-    public function testFailure(): void
+    /** @test */
+    public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');

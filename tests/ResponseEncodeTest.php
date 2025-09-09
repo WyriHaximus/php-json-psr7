@@ -8,15 +8,13 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use WyriHaximus;
 
-/**
- * @internal
- */
 final class ResponseEncodeTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider \WyriHaximus\Tests\Provider::response
      */
-    public function testSuccess(ResponseInterface $response): void
+    public function success(ResponseInterface $response): void
     {
         $json = WyriHaximus\psr7_response_encode($response);
         self::assertSame(
@@ -29,7 +27,7 @@ final class ResponseEncodeTest extends TestCase
                 ],
                 'body' => 'YmVlcg==',
             ],
-            $json
+            $json,
         );
 
         self::assertSame('beer', (string) $response->getBody());

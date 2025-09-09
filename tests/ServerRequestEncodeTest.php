@@ -9,15 +9,13 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
 
-/**
- * @internal
- */
 final class ServerRequestEncodeTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider \WyriHaximus\Tests\Provider::serverRequest
      */
-    public function testSuccess(ServerRequestInterface $request, int $time, UploadedFileInterface $waterBottle, UploadedFileInterface $beerBottle): void
+    public function success(ServerRequestInterface $request, int $time, UploadedFileInterface $waterBottle, UploadedFileInterface $beerBottle): void
     {
         $json = WyriHaximus\psr7_server_request_encode($request);
         self::assertSame(
@@ -55,7 +53,7 @@ final class ServerRequestEncodeTest extends TestCase
                     ],
                 ],
             ],
-            $json
+            $json,
         );
 
         self::assertSame('Water', (string) $waterBottle->getStream());

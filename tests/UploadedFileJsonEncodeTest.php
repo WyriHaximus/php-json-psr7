@@ -10,15 +10,13 @@ use WyriHaximus;
 
 use function Safe\json_encode;
 
-/**
- * @internal
- */
 final class UploadedFileJsonEncodeTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider \WyriHaximus\Tests\Provider::uploadedFileBeerBottle
      */
-    public function testSuccess(UploadedFileInterface $beerBottle): void
+    public function success(UploadedFileInterface $beerBottle): void
     {
         $json = WyriHaximus\psr7_uploaded_file_json_encode($beerBottle);
         self::assertSame(
@@ -29,7 +27,7 @@ final class UploadedFileJsonEncodeTest extends TestCase
                 'size' => 14,
                 'stream' => 'RGFyayBIb3Jpem9uIDU=',
             ]),
-            $json
+            $json,
         );
 
         self::assertSame('Dark Horizon 5', (string) $beerBottle->getStream());

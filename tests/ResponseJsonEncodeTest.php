@@ -10,15 +10,13 @@ use WyriHaximus;
 
 use function Safe\json_encode;
 
-/**
- * @internal
- */
 final class ResponseJsonEncodeTest extends TestCase
 {
     /**
+     * @test
      * @dataProvider \WyriHaximus\Tests\Provider::response
      */
-    public function testSuccess(ResponseInterface $response): void
+    public function success(ResponseInterface $response): void
     {
         $json = WyriHaximus\psr7_response_json_encode($response);
         self::assertSame(
@@ -31,7 +29,7 @@ final class ResponseJsonEncodeTest extends TestCase
                 ],
                 'body' => 'YmVlcg==',
             ]),
-            $json
+            $json,
         );
 
         self::assertSame('beer', (string) $response->getBody());
