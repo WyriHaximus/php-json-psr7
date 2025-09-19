@@ -12,15 +12,7 @@ final class UploadedFileDecodeTest extends TestCase
     /** @test */
     public function success(): void
     {
-        $json = [
-            'filename' => 'beer.bottle',
-            'media_type' => 'earth/liquid',
-            'error' => 0,
-            'size' => 14,
-            'stream' => 'RGFyayBIb3Jpem9uIDU=',
-        ];
-
-        $file = WyriHaximus\psr7_uploaded_file_decode($json);
+        $file = WyriHaximus\psr7_uploaded_file_decode(Messages::FILE_BEER_BOTTLE);
         self::assertSame(14, $file->getSize());
         self::assertSame(0, $file->getError());
         self::assertSame('earth/liquid', $file->getClientMediaType());

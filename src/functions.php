@@ -159,7 +159,7 @@ function psr7_uploaded_file_json_encode(UploadedFileInterface $uploadedFile): st
 }
 
 /**
- * @return array{stream: string, size: ?int, error: int, filename: ?string, media_type: ?string}
+ * @return array{filename: ?string, media_type: ?string, error: int, size: ?int, stream: string}
  */
 function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
 {
@@ -231,7 +231,9 @@ function psr7_server_request_json_encode(ServerRequestInterface $request): strin
  */
 function psr7_server_request_encode(ServerRequestInterface $request): array
 {
-    /** @var array<string, UploadedFileInterface> $files */
+    /**
+     * @var array<string, UploadedFileInterface> $files
+     */
     $files                    = Hash::flatten($request->getUploadedFiles());
     $json                     = [];
     $json['protocol_version'] = $request->getProtocolVersion();
@@ -261,7 +263,9 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
  */
 function psr7_server_request_json_decode(string $json): ServerRequestInterface
 {
-    /** @var array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>} $decodedJson */
+    /**
+     * @var array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>} $decodedJson
+     */
     $decodedJson = json_decode($json, true);
 
     return psr7_server_request_decode($decodedJson);

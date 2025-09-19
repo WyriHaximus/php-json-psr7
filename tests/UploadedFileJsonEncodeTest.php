@@ -19,14 +19,9 @@ final class UploadedFileJsonEncodeTest extends TestCase
     public function success(UploadedFileInterface $beerBottle): void
     {
         $json = WyriHaximus\psr7_uploaded_file_json_encode($beerBottle);
+
         self::assertSame(
-            json_encode([
-                'filename' => 'beer.bottle',
-                'media_type' => 'earth/liquid',
-                'error' => 0,
-                'size' => 14,
-                'stream' => 'RGFyayBIb3Jpem9uIDU=',
-            ]),
+            json_encode(Messages::FILE_BEER_BOTTLE),
             $json,
         );
 

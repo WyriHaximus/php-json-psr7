@@ -37,20 +37,8 @@ final class ServerRequestJsonDecodeTest extends TestCase
             'body' => 'YmVlcg==',
             'parsed_body' => ['Dark Horizon 5'],
             'files' => [
-                'root.water' => [
-                    'filename' => 'water.bottle',
-                    'media_type' => 'earth/liquid',
-                    'error' => 0,
-                    'size' => 5,
-                    'stream' => 'V2F0ZXI=',
-                ],
-                'root.beer' => [
-                    'filename' => 'beer.bottle',
-                    'media_type' => 'earth/liquid',
-                    'error' => 0,
-                    'size' => 14,
-                    'stream' => 'RGFyayBIb3Jpem9uIDU=',
-                ],
+                'root.water' => Messages::FILE_WATER_BOTTLE,
+                'root.beer' => Messages::FILE_BEER_BOTTLE,
             ],
         ]);
 
