@@ -36,20 +36,8 @@ final class ServerRequestDecodeTest extends TestCase
             'body' => 'YmVlcg==',
             'parsed_body' => null,
             'files' => [
-                'root.water' => [
-                    'filename' => 'water.bottle',
-                    'media_type' => 'earth/liquid',
-                    'error' => 0,
-                    'size' => 5,
-                    'stream' => 'V2F0ZXI=',
-                ],
-                'root.beer' => [
-                    'filename' => 'beer.bottle',
-                    'media_type' => 'earth/liquid',
-                    'error' => 0,
-                    'size' => 14,
-                    'stream' => 'RGFyayBIb3Jpem9uIDU=',
-                ],
+                'root.water' => Messages::FILE_WATER_BOTTLE,
+                'root.beer' => Messages::FILE_BEER_BOTTLE,
             ],
         ];
 
