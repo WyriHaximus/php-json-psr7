@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
@@ -15,7 +16,7 @@ use const UPLOAD_ERR_OK;
 
 final class ServerRequestJsonDecodeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function success(): void
     {
         $time = time();
@@ -82,7 +83,7 @@ final class ServerRequestJsonDecodeTest extends TestCase
         self::assertSame(UPLOAD_ERR_OK, $files['root']['beer']->getError());
     }
 
-    /** @test */
+    #[Test]
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedServerRequestException::class);

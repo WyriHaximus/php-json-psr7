@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\DataProviderExternal;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
@@ -13,10 +15,8 @@ use function Safe\json_encode;
 
 final class ServerRequestJsonEncodeTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider \WyriHaximus\Tests\Provider::serverRequest
-     */
+    #[Test]
+    #[DataProviderExternal(Provider::class, 'serverRequest')]
     public function success(ServerRequestInterface $request, int $time, UploadedFileInterface $waterBottle, UploadedFileInterface $beerBottle): void
     {
         $json = WyriHaximus\psr7_server_request_json_encode($request);
