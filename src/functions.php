@@ -30,25 +30,17 @@ function psr7_response_json_encode(ResponseInterface $response): string
     return json_encode(psr7_response_encode($response), JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<string, mixed>, body: string}
- */
+/** @return array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<string, mixed>, body: string} */
 function psr7_response_encode(ResponseInterface $response): array
 {
-    /**
-     * @phpstan-ignore return.type
-     */
+    /** @phpstan-ignore return.type */
     return ['protocol_version' => $response->getProtocolVersion(), 'status_code' => $response->getStatusCode(), 'reason_phrase' => $response->getReasonPhrase(), 'headers' => sort_headers($response->getHeaders()), 'body' => base64_encode((string) $response->getBody())];
 }
 
-/**
- * @throws NotAnEncodedResponseException
- */
+/** @throws NotAnEncodedResponseException */
 function psr7_response_json_decode(string $json): ResponseInterface
 {
-    /**
-     * @var array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<string, mixed>, body: string} $jsonArray
-     */
+    /** @var array{protocol_version: string, status_code: int, reason_phrase: string, headers: array<string, mixed>, body: string} $jsonArray */
     $jsonArray = json_decode(
         json: $json,
         associative: true,
@@ -94,25 +86,17 @@ function psr7_request_json_encode(RequestInterface $request): string
     return json_encode(psr7_request_encode($request), JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array{protocol_version: string, method: string, uri: string, headers: array<string, mixed>, body: string}
- */
+/** @return array{protocol_version: string, method: string, uri: string, headers: array<string, mixed>, body: string} */
 function psr7_request_encode(RequestInterface $request): array
 {
-    /**
-     * @phpstan-ignore return.type
-     */
+    /** @phpstan-ignore return.type */
     return ['protocol_version' => $request->getProtocolVersion(), 'method' => $request->getMethod(), 'uri' => (string) $request->getUri(), 'headers' => sort_headers($request->getHeaders()), 'body' => base64_encode((string) $request->getBody())];
 }
 
-/**
- * @throws NotAnEncodedRequestException
- */
+/** @throws NotAnEncodedRequestException */
 function psr7_request_json_decode(string $json): RequestInterface
 {
-    /**
-     * @var array{protocol_version: string, method: string, uri: string, headers: array<string, mixed>, body: string} $jsonArray
-     */
+    /** @var array{protocol_version: string, method: string, uri: string, headers: array<string, mixed>, body: string} $jsonArray */
     $jsonArray = json_decode(
         json: $json,
         associative: true,
@@ -158,29 +142,16 @@ function psr7_uploaded_file_json_encode(UploadedFileInterface $uploadedFile): st
     return json_encode(psr7_uploaded_file_encode($uploadedFile), JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array{filename: ?string, media_type: ?string, error: int, size: ?int, stream: string}
- */
+/** @return array{filename: ?string, media_type: ?string, error: int, size: ?int, stream: string} */
 function psr7_uploaded_file_encode(UploadedFileInterface $uploadedFile): array
 {
-    $json               = [];
-    $json['filename']   = $uploadedFile->getClientFilename();
-    $json['media_type'] = $uploadedFile->getClientMediaType();
-    $json['error']      = $uploadedFile->getError();
-    $json['size']       = $uploadedFile->getSize();
-    $json['stream']     = base64_encode((string) $uploadedFile->getStream());
-
-    return $json;
+    return ['filename' => $uploadedFile->getClientFilename(), 'media_type' => $uploadedFile->getClientMediaType(), 'error' => $uploadedFile->getError(), 'size' => $uploadedFile->getSize(), 'stream' => base64_encode((string) $uploadedFile->getStream())];
 }
 
-/**
- * @throws NotAnEncodedUploadedFileException
- */
+/** @throws NotAnEncodedUploadedFileException */
 function psr7_uploaded_file_json_decode(string $json): UploadedFileInterface
 {
-    /**
-     * @var array{stream: string, size: int, error: int, filename: string, media_type: string} $jsonArray
-     */
+    /** @var array{stream: string, size: int, error: int, filename: string, media_type: string} $jsonArray */
     $jsonArray = json_decode(
         json: $json,
         associative: true,
@@ -226,14 +197,10 @@ function psr7_server_request_json_encode(ServerRequestInterface $request): strin
     return json_encode(psr7_server_request_encode($request), JSON_THROW_ON_ERROR);
 }
 
-/**
- * @return array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>}
- */
+/** @return array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>} */
 function psr7_server_request_encode(ServerRequestInterface $request): array
 {
-    /**
-     * @var array<string, UploadedFileInterface> $files
-     */
+    /** @var array<string, UploadedFileInterface> $files */
     $files                    = Hash::flatten($request->getUploadedFiles());
     $json                     = [];
     $json['protocol_version'] = $request->getProtocolVersion();
@@ -251,9 +218,7 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
         $json['files'][$key] = psr7_uploaded_file_encode($file);
     }
 
-    /**
-     * @phpstan-ignore return.type
-     */
+    /** @phpstan-ignore return.type */
     return $json;
 }
 
@@ -263,9 +228,7 @@ function psr7_server_request_encode(ServerRequestInterface $request): array
  */
 function psr7_server_request_json_decode(string $json): ServerRequestInterface
 {
-    /**
-     * @var array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>} $decodedJson
-     */
+    /** @var array{protocol_version: string, method: string, uri: string, query_params: array<string, mixed>, cookie_params: array<string, mixed>, server_params: array<string, mixed>, headers: array<string, mixed>, attributes: array<string, mixed>, body: string, parsed_body: (array<mixed>|object|null), files: array<string, array{stream: string, size: int, error: int, filename: string, media_type: string}>} $decodedJson */
     $decodedJson = json_decode($json, true);
 
     return psr7_server_request_decode($decodedJson);
@@ -300,14 +263,14 @@ function psr7_server_request_decode(array $json): ServerRequestInterface
         throw new NotAnEncodedServerRequestException($json, 'body');
     }
 
-    $request = (new ServerRequest(
+    $request = new ServerRequest(
         $json['method'],
         $json['uri'],
         $json['headers'],
         new ReadOnlyStringStream($json['body']),
         $json['protocol_version'],
         $json['server_params'],
-    ))->
+    )->
         withParsedBody($json['parsed_body'])->
         withUploadedFiles($json['files'])->
         withQueryParams($json['query_params'])->

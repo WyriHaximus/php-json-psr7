@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
 final class UploadedFileDecodeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function success(): void
     {
         $file = WyriHaximus\psr7_uploaded_file_decode(Messages::FILE_BEER_BOTTLE);
@@ -21,7 +22,7 @@ final class UploadedFileDecodeTest extends TestCase
         self::assertSame('Dark Horizon 5', (string) $file->getStream());
     }
 
-    /** @test */
+    #[Test]
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);

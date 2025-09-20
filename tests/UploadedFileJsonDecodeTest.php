@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WyriHaximus\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
@@ -11,7 +12,7 @@ use function Safe\json_encode;
 
 final class UploadedFileJsonDecodeTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function success(): void
     {
         $json = json_encode(Messages::FILE_BEER_BOTTLE);
@@ -25,7 +26,7 @@ final class UploadedFileJsonDecodeTest extends TestCase
         self::assertSame('Dark Horizon 5', (string) $file->getStream());
     }
 
-    /** @test */
+    #[Test]
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
