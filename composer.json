@@ -23,7 +23,7 @@
     "laminas/laminas-diactoros": "^3.6",
     "nyholm/psr7": "^1.8.2",
     "slim/psr7": "^1.7.1",
-    "wyrihaximus/makefiles": "^0.7.8",
+    "wyrihaximus/makefiles": "^0.7.9",
     "wyrihaximus/test-utilities": "^8.5.0"
   },
   "autoload": {
