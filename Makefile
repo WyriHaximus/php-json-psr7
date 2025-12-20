@@ -46,12 +46,12 @@ endif
 all: ## Runs everything ####
 	$(DOCKER_RUN) make all-raw
 all-raw: ## The real runs everything, but due to sponge it has to be ran inside DOCKER_RUN ##U##
-	$(MAKE) syntax-php composer-normalize rector-upgrade cs-fix cs stan unit-testing mutation-testing composer-require-checker composer-unused backward-compatibility-check ## Count: 11
+	$(MAKE) syntax-php rector-upgrade cs-fix cs stan unit-testing mutation-testing composer-require-checker composer-unused backward-compatibility-check ## Count: 10
 
 
 ## Temporary set of migrations to get all my repos in shape
 migrations-git-enforce-gitattributes-contents: #### Enforce .gitattributes contents ##*I*##
-	($(DOCKER_RUN) php -r 'file_put_contents(".gitattributes", base64_decode("IyBTZXQgdGhlIGRlZmF1bHQgYmVoYXZpb3IsIGluIGNhc2UgcGVvcGxlIGRvbid0IGhhdmUgY29yZS5hdXRvY3JsZiBzZXQuCiogdGV4dCBlb2w9bGYKCiMgSWdub3JpbmcgZmlsZXMgZm9yIGRpc3RyaWJ1dGlvbiBhcmNoaWV2ZXMKLmdpdGh1Yi8gZXhwb3J0LWlnbm9yZQpldGMvY2kvIGV4cG9ydC1pZ25vcmUKZXRjL3FhLyBleHBvcnQtaWdub3JlCmV4YW1wbGVzLyBleHBvcnQtaWdub3JlCnRlc3RzLyBleHBvcnQtaWdub3JlCnZhci8gZXhwb3J0LWlnbm9yZQouZGV2Y29udGFpbmVyLmpzb24gZXhwb3J0LWlnbm9yZQouZWRpdG9yY29uZmlnIGV4cG9ydC1pZ25vcmUKLmdpdGF0dHJpYnV0ZXMgZXhwb3J0LWlnbm9yZQouZ2l0aWdub3JlIGV4cG9ydC1pZ25vcmUKQ09OVFJJQlVUSU5HLm1kIGV4cG9ydC1pZ25vcmUKY29tcG9zZXIubG9jayBleHBvcnQtaWdub3JlCk1ha2VmaWxlIGV4cG9ydC1pZ25vcmUKUkVBRE1FLm1kIGV4cG9ydC1pZ25vcmUKCiMgRGlmZmluZwoqLnBocCBkaWZmPXBocAo="));' || true)
+	($(DOCKER_RUN) php -r 'file_put_contents(".gitattributes", base64_decode("IyBTZXQgdGhlIGRlZmF1bHQgYmVoYXZpb3IsIGluIGNhc2UgcGVvcGxlIGRvbid0IGhhdmUgY29yZS5hdXRvY3JsZiBzZXQuCiogdGV4dCBlb2w9bGYKCiMgVGhlc2UgZmlsZXMgYXJlIGJpbmFyeSBhbmQgc2hvdWxkIGJlIGxlZnQgdW50b3VjaGVkCiMgKGJpbmFyeSBpcyBhIG1hY3JvIGZvciAtdGV4dCAtZGlmZikKKi5wbmcgYmluYXJ5CiouanBnIGJpbmFyeQoqLmpwZWcgYmluYXJ5CiouZ2lmIGJpbmFyeQoqLmljbyBiaW5hcnkKKi53ZWJwIGJpbmFyeQoqLmJtcCBiaW5hcnkKKi50dGYgYmluYXJ5CgojIElnbm9yaW5nIGZpbGVzIGZvciBkaXN0cmlidXRpb24gYXJjaGlldmVzCi5naXRodWIvIGV4cG9ydC1pZ25vcmUKZXRjL2NpLyBleHBvcnQtaWdub3JlCmV0Yy9xYS8gZXhwb3J0LWlnbm9yZQpleGFtcGxlcy8gZXhwb3J0LWlnbm9yZQp0ZXN0cy8gZXhwb3J0LWlnbm9yZQp2YXIvIGV4cG9ydC1pZ25vcmUKLmRldmNvbnRhaW5lci5qc29uIGV4cG9ydC1pZ25vcmUKLmVkaXRvcmNvbmZpZyBleHBvcnQtaWdub3JlCi5naXRhdHRyaWJ1dGVzIGV4cG9ydC1pZ25vcmUKLmdpdGlnbm9yZSBleHBvcnQtaWdub3JlCkNPTlRSSUJVVElORy5tZCBleHBvcnQtaWdub3JlCmNvbXBvc2VyLmxvY2sgZXhwb3J0LWlnbm9yZQpNYWtlZmlsZSBleHBvcnQtaWdub3JlClJFQURNRS5tZCBleHBvcnQtaWdub3JlCgojIERpZmZpbmcKKi5waHAgZGlmZj1waHAK"));' || true)
 
 migrations-git-make-sure-gitignore-exists: #### Make sure .gitignore exists ##*I*##
 	($(DOCKER_RUN) touch .gitignore || true)
@@ -270,7 +270,7 @@ on-install-or-update: ## Tasks, like migrations, that specifically have be run a
 syntax-php: ## Lint PHP syntax ##*ILH*##
 	$(DOCKER_RUN) vendor/bin/parallel-lint --exclude vendor .
 
-composer-normalize: ## Normalize composer.json ##*I*##
+composer-normalize: #### Normalize composer.json ##*I*##
 	$(DOCKER_RUN) composer normalize
 	$(DOCKER_RUN) COMPOSER_DISABLE_NETWORK=1 composer update --lock --no-scripts || $(DOCKER_RUN) composer update --lock --no-scripts
 
