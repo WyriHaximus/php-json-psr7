@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "641d08160a7931f6ed5951740c4e9900",
+    "content-hash": "e601b3ca5932e093848e410df77c8bc4",
     "packages": [
         {
             "name": "ancarda/psr7-string-stream",
@@ -10104,16 +10104,16 @@
         },
         {
             "name": "wyrihaximus/makefiles",
-            "version": "0.7.14",
+            "version": "0.7.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/Makefiles.git",
-                "reference": "7ead4d8f82d2dadace4eb74d01c00e223cea4e03"
+                "reference": "ff6af9e36ff4f5605523586f6964f13f9ea778de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/Makefiles/zipball/7ead4d8f82d2dadace4eb74d01c00e223cea4e03",
-                "reference": "7ead4d8f82d2dadace4eb74d01c00e223cea4e03",
+                "url": "https://api.github.com/repos/WyriHaximus/Makefiles/zipball/ff6af9e36ff4f5605523586f6964f13f9ea778de",
+                "reference": "ff6af9e36ff4f5605523586f6964f13f9ea778de",
                 "shasum": ""
             },
             "require": {
@@ -10125,7 +10125,7 @@
                 "infection/infection": "<0.31.3"
             },
             "require-dev": {
-                "wyrihaximus/test-utilities": "^8.7.0"
+                "wyrihaximus/test-utilities": "^8.8.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -10149,7 +10149,7 @@
             "description": "🧱 Makefile building blocks",
             "support": {
                 "issues": "https://github.com/WyriHaximus/Makefiles/issues",
-                "source": "https://github.com/WyriHaximus/Makefiles/tree/0.7.14"
+                "source": "https://github.com/WyriHaximus/Makefiles/tree/0.7.15"
             },
             "funding": [
                 {
@@ -10157,7 +10157,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-26T22:05:02+00:00"
+            "time": "2025-12-20T14:30:01+00:00"
         },
         {
             "name": "wyrihaximus/phpstan-rules-wrapper",
