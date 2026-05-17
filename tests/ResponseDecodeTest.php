@@ -40,7 +40,11 @@ final class ResponseDecodeTest extends TestCase
         self::expectException(WyriHaximus\NotAnEncodedResponseException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 response, field "protocol_version" is missing');
 
-        /** @phpstan-ignore-next-line */
+        /**
+         * It has to be tested
+         *
+         * @phpstan-ignore argument.type
+         */
         WyriHaximus\psr7_response_decode([]);
     }
 }
