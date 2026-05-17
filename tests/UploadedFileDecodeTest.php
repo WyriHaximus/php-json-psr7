@@ -28,7 +28,11 @@ final class UploadedFileDecodeTest extends TestCase
         self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
         self::expectExceptionMessage('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');
 
-        /** @phpstan-ignore-next-line */
+        /**
+         * It has to be tested
+         *
+         * @phpstan-ignore argument.type
+         */
         WyriHaximus\psr7_uploaded_file_decode([]);
     }
 }
