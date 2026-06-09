@@ -24,7 +24,7 @@
     "nyholm/psr7": "^1.8.2",
     "slim/psr7": "^1.7.1",
     "wyrihaximus/makefiles": "^0.10.6",
-    "wyrihaximus/test-utilities": "^12.2.0"
+    "wyrihaximus/test-utilities": "^13.1.0"
   },
   "autoload": {
     "psr-4": {
