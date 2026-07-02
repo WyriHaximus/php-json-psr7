@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 use function time;
 
 use const UPLOAD_ERR_OK;
@@ -42,6 +42,7 @@ final class ServerRequestJsonDecodeTest extends TestCase
                 'root.beer' => Messages::FILE_BEER_BOTTLE,
             ],
         ]);
+        self::assertIsString($json);
 
         $request = WyriHaximus\psr7_server_request_json_decode($json);
         self::assertSame('2', $request->getProtocolVersion());

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 
 final class UploadedFileJsonEncodeTest extends TestCase
 {

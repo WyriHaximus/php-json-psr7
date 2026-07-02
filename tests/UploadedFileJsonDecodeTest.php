@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 
 final class UploadedFileJsonDecodeTest extends TestCase
 {
@@ -16,6 +16,7 @@ final class UploadedFileJsonDecodeTest extends TestCase
     public function success(): void
     {
         $json = json_encode(Messages::FILE_BEER_BOTTLE);
+        self::assertIsString($json);
 
         $file = WyriHaximus\psr7_uploaded_file_json_decode($json);
         self::assertSame(14, $file->getSize());
