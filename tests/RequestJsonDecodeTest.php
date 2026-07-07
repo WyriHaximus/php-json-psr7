@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 
 final class RequestJsonDecodeTest extends TestCase
 {
@@ -25,6 +25,7 @@ final class RequestJsonDecodeTest extends TestCase
             ],
             'body' => 'YmVlcg==',
         ]);
+        self::assertIsString($json);
 
         $request = WyriHaximus\psr7_request_json_decode($json);
         self::assertSame('2', $request->getProtocolVersion());

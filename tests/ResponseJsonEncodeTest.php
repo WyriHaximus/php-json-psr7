@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 
 final class ResponseJsonEncodeTest extends TestCase
 {

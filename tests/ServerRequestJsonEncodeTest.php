@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\UploadedFileInterface;
 use WyriHaximus;
 
-use function Safe\json_encode;
+use function json_encode;
 
 final class ServerRequestJsonEncodeTest extends TestCase
 {
