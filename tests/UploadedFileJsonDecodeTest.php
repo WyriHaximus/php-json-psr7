@@ -31,7 +31,7 @@ final class UploadedFileJsonDecodeTest extends TestCase
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedUploadedFileException::class);
-        self::expectExceptionMessage('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');
+        self::expectExceptionMessageIsOrContains('"[]" is not an encoded PSR-7 uploaded file, field "stream" is missing');
 
         WyriHaximus\psr7_uploaded_file_json_decode('[]');
     }
