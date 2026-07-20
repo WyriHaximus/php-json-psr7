@@ -87,7 +87,7 @@ final class ServerRequestDecodeTest extends TestCase
     public function failure(): void
     {
         self::expectException(WyriHaximus\NotAnEncodedServerRequestException::class);
-        self::expectExceptionMessage('"[]" is not an encoded PSR-7 server request, field "protocol_version" is missing');
+        self::expectExceptionMessageIsOrContains('"[]" is not an encoded PSR-7 server request, field "protocol_version" is missing');
 
         /**
          * It has to be tested
