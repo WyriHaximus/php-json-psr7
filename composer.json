@@ -19,7 +19,7 @@
     "wyrihaximus/json-utilities": "^1.4"
   },
   "require-dev": {
-    "guzzlehttp/psr7": "^2.8",
+    "guzzlehttp/psr7": "^2.8 || ^3.0",
     "laminas/laminas-diactoros": "^3.6",
     "nyholm/psr7": "^1.8.2",
     "slim/psr7": "^1.7.1",
